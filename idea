@@ -1,0 +1,571 @@
+Это дополнение меняет позиционирование довольно сильно — и в хорошую сторону.
+
+Твоя главная конкуренция — не только другие термостаты. Есть три способа решить задачу:
+
+1. Поставить обычный термостат и принять его ограничения.
+2. Собрать систему из Zigbee-шлюза, датчика, реле, Home Assistant или Tuya и автоматизаций.
+3. Использовать OSH, где эта задача уже оформлена как готовый продукт.
+
+То есть OSH — это не «упрощённый умный дом» и не «термостат для энтузиастов». Это **готовое решение для расширенного управления отоплением без необходимости строить умный дом**.
+
+## Главная категория продукта
+
+Лучшее внутреннее определение:
+
+> **OSH находится между обычным термостатом и полноценной системой умного дома.**
+
+На английском для маркетингового brief:
+
+> **Advanced heating control without the complexity of building a smart home.**
+
+Или более эмоционально:
+
+> **Smart heating without the smart-home setup.**
+
+Последняя формулировка очень сильная, но её лучше использовать как вторичный headline, а не как единственное описание продукта.
+
+---
+
+# Как выглядит конкурентная лестница
+
+| Решение                                 |   Обычный термостат |                              OSH | Home Assistant / Tuya automation |
+| --------------------------------------- | ------------------: | -------------------------------: | -------------------------------: |
+| Поддержание температуры                 |                  Да |                               Да |                  Нужно настроить |
+| Управление с телефона                   |              Иногда |                               Да |                               Да |
+| Датчик отдельно от термостата           |          Обычно нет |                               Да |                               Да |
+| Несколько датчиков                      |          Обычно нет |                               Да |                               Да |
+| Выбор опорного датчика                  |          Обычно нет |                               Да |                  Нужно настроить |
+| Требуется Zigbee gateway                |                 Нет | Нет, Zigbee встроен в устройство |                        Обычно да |
+| Требуется создавать автоматизации       |                 Нет |                              Нет |                               Да |
+| Специализированный интерфейс термостата |                  Да |                               Да |                       Обычно нет |
+| Управление с настенного экрана          |                  Да |                               Да |               Зависит от системы |
+| Требуются знания умного дома            |                 Нет |                              Нет |                         Часто да |
+| Home Assistant                          | Нет или ограниченно |          Опционально через cloud |               Основная платформа |
+
+Важная идея:
+
+> Умный дом технически может воспроизвести функции OSH, но пользователю придётся самостоятельно подобрать совместимые компоненты и правильно связать их автоматизациями.
+
+OSH превращает это из проекта по интеграции устройств в готовый пользовательский сценарий:
+
+1. Подключить датчик.
+2. Выбрать его в качестве опорного.
+3. Задать температуру.
+
+Без создания правил вида:
+
+> Если температура датчика ниже X, включить реле; если выше Y, выключить; учитывать потерю связи, гистерезис, расписание и ручной override.
+
+Именно эта разница должна быть видна на сайте.
+
+---
+
+# Обновление Product & Messaging Brief
+
+Ниже — блоки, которые я бы добавил или заменил в предыдущем документе.
+
+# OSH Product & Messaging Brief — Positioning Update
+
+## 1. Market position
+
+OSH occupies the space between a conventional thermostat and a complete smart-home automation system.
+
+A conventional thermostat is simple to use but usually measures temperature only near the wall unit and offers limited flexibility.
+
+A smart-home system can connect wireless sensors, relays and heating devices, but requires the user to select compatible components, configure a gateway and create reliable automations.
+
+OSH provides the important benefits of both approaches:
+
+* the simplicity and dedicated interface of a thermostat;
+* wireless room sensing normally associated with a smart-home system;
+* remote mobile control;
+* no requirement to build general-purpose automations.
+
+### Internal category definition
+
+> A dedicated smart heating system for users who need more flexibility than a conventional thermostat but do not want to build a complete smart home.
+
+### Short category statement
+
+> Smart heating without the smart-home setup.
+
+---
+
+## 2. Core target customer
+
+The primary OSH customer is not necessarily a smart-home enthusiast.
+
+The customer:
+
+* wants the correct temperature in a specific room;
+* wants to control heating from a phone;
+* may need the temperature sensor to be located away from the thermostat;
+* may want to monitor several rooms;
+* does not want to install a separate Zigbee gateway;
+* does not want to create or maintain automation rules;
+* prefers a finished product over a collection of independently configured devices;
+* still expects direct control from a familiar wall-mounted thermostat.
+
+The customer may understand what a smart home is, but does not want smart-home knowledge to be required for everyday heating control.
+
+---
+
+## 3. The alternative the customer might otherwise build
+
+The same basic result can be assembled using:
+
+* a Zigbee temperature sensor;
+* a Zigbee gateway;
+* a smart plug, relay or actuator;
+* Home Assistant, Tuya or another automation platform;
+* custom automation rules.
+
+However, this approach requires the user to:
+
+* choose compatible components;
+* install and maintain a gateway;
+* pair devices from different product categories;
+* create heating automations;
+* configure thresholds or hysteresis;
+* configure schedules and manual overrides;
+* decide what happens when a sensor becomes unavailable;
+* ensure that the heating output returns to a safe state;
+* maintain the system when software or devices change.
+
+OSH packages this functionality as a dedicated thermostat product.
+
+### Core contrast
+
+> With a general smart-home system, the user builds the heating logic. With OSH, the heating logic is already part of the product.
+
+---
+
+## 4. Refined customer problem
+
+The customer needs more than a conventional thermostat provides, but a complete smart-home system is disproportionate to the problem.
+
+Typical customer questions include:
+
+* How can I measure the temperature in the bathroom when the thermostat is installed in the hallway?
+* How can I use a wireless sensor without building Home Assistant automations?
+* How can I control heating from my phone without replacing the thermostat with a smart relay?
+* How can I keep a normal wall-mounted thermostat while measuring temperature elsewhere?
+* How can I view several temperatures and choose which one controls the heating?
+
+OSH should answer these questions directly.
+
+---
+
+## 5. Refined solution statement
+
+OSH combines a dedicated wall-mounted thermostat, wireless Zigbee temperature sensing and mobile control in one finished system.
+
+The user can:
+
+1. install the thermostat;
+2. pair a supported wireless temperature sensor;
+3. select the sensor used for heating control;
+4. choose the required temperature or schedule.
+
+No external Zigbee gateway or user-created automation is required for the core thermostat functionality.
+
+Home Assistant integration remains available for users who already have a smart home, but it is optional and is not required to use OSH.
+
+---
+
+## 6. Refined value proposition
+
+### Primary value proposition
+
+> OSH gives users the flexibility of wireless smart-home sensors with the simplicity of a dedicated thermostat.
+
+### Alternative version
+
+> Get the temperature control you would normally build with sensors, gateways and automations — in one purpose-built thermostat.
+
+### Consumer-focused version
+
+> Measure temperature in the right room and control your heating from your phone, without building a smart home.
+
+---
+
+## 7. Positioning statement
+
+For homeowners who need more flexible heating control than a conventional thermostat can provide, but do not want to build and maintain a complete smart-home system, OSH is a dedicated smart thermostat platform that combines wireless room sensors, mobile control and a built-in AMOLED interface.
+
+Unlike conventional thermostats, OSH can regulate heating using a sensor placed away from the wall unit.
+
+Unlike general-purpose smart-home solutions, OSH does not require the user to build heating automations from separate sensors, gateways and relays.
+
+---
+
+## 8. Messaging triangle
+
+OSH messaging should consistently communicate three connected ideas.
+
+### 1. Measure in the right place
+
+> Use a wireless temperature sensor in the room where comfort matters.
+
+### 2. No automation building required
+
+> Pair the sensor, select it as the reference and set the temperature.
+
+### 3. Use it like a normal thermostat
+
+> Control heating from the AMOLED touchscreen or remotely from the OSH app.
+
+These three points explain the complete product more effectively than a list of technologies.
+
+---
+
+## 9. Main headline directions
+
+### Recommended product headline
+
+> The right temperature, measured in the right room.
+
+Subheadline:
+
+> Use wireless room sensors and control your heating from the thermostat or your phone — without building a smart-home automation system.
+
+### Alternative: simplicity-led
+
+> Smart heating without the smart-home setup.
+
+Subheadline:
+
+> Pair a wireless temperature sensor, choose where the temperature should be measured and let OSH control the heating.
+
+### Alternative: category contrast
+
+> More flexible than a thermostat. Simpler than a smart home.
+
+Subheadline:
+
+> OSH combines wireless temperature sensing, mobile control and a dedicated wall-mounted thermostat in one system.
+
+### Alternative: scenario-led
+
+> Your thermostat can be in the hallway. Your temperature sensor does not have to be.
+
+Subheadline:
+
+> Control the bathroom floor using the actual temperature inside the bathroom.
+
+---
+
+## 10. Key differentiator
+
+The primary differentiator is not Zigbee by itself.
+
+Zigbee is an enabling technology.
+
+The differentiator is:
+
+> Wireless reference temperature sensing built into a complete thermostat experience.
+
+This includes:
+
+* direct sensor pairing;
+* temperature display;
+* reference sensor selection;
+* thermostat control logic;
+* schedules;
+* manual control;
+* fallback behaviour;
+* mobile application;
+* dedicated heating output.
+
+Marketing should explain the resulting experience rather than leading with the Zigbee protocol.
+
+---
+
+## 11. Product simplicity promise
+
+The standard setup flow should be communicated as:
+
+1. Install the thermostat.
+2. Pair a temperature sensor.
+3. Choose the reference room.
+4. Set the temperature.
+
+Suggested copy:
+
+> No gateway configuration. No automation rules. No collection of separate devices.
+
+This claim should only be used if no external Zigbee gateway is required for supported sensors.
+
+---
+
+## 12. Home Assistant positioning
+
+Home Assistant should be presented as an optional extension, not as the foundation of the product.
+
+Recommended message:
+
+> OSH works as a complete thermostat system on its own. Users who already use Home Assistant can also connect it through the OSH cloud.
+
+This distinction is important:
+
+* OSH is designed for users without Home Assistant;
+* OSH does not require Home Assistant;
+* Home Assistant users are still supported;
+* the current integration is cloud-based;
+* local Home Assistant control is not available.
+
+Home Assistant should appear lower on the homepage, after the core product has been explained.
+
+---
+
+## 13. Tuya and other general automation platforms
+
+Tuya and similar platforms should normally not be named in the primary marketing message.
+
+They are useful as an internal competitive reference, but mentioning them prominently may:
+
+* distract users unfamiliar with smart homes;
+* make OSH look like another automation platform;
+* start an unnecessary feature-by-feature comparison;
+* imply compatibility that may not exist.
+
+The customer-facing contrast should be phrased generically:
+
+> No separate gateway or custom heating automations required.
+
+More technical comparison with Home Assistant, Tuya and similar systems can appear in:
+
+* an article;
+* a FAQ;
+* a comparison page;
+* installer documentation.
+
+---
+
+## 14. What OSH is
+
+OSH is:
+
+* a dedicated heating product;
+* a thermostat first;
+* usable without smart-home expertise;
+* designed around wireless reference sensors;
+* remotely controllable;
+* directly controllable from the wall;
+* compatible with multiple heating interfaces;
+* optionally integratable with Home Assistant.
+
+---
+
+## 15. What OSH is not
+
+OSH is not:
+
+* a general-purpose smart-home hub;
+* a replacement for all Home Assistant functionality;
+* a system that requires users to create automations;
+* a simple Zigbee relay with a display;
+* a collection of unrelated sensors and switches;
+* a current multi-zone heating controller;
+* locally integrated with Home Assistant;
+* dependent on Home Assistant for normal operation.
+
+---
+
+## 16. Reasons to choose OSH instead of a DIY smart-home solution
+
+### Purpose-built heating logic
+
+The thermostat already contains the control modes, schedules, reference temperature selection and heating behaviour.
+
+### One coherent interface
+
+Temperature sensors, thermostat settings and schedules are presented as parts of one heating system rather than separate smart-home entities.
+
+### Direct wall control
+
+The user retains a familiar physical thermostat interface.
+
+### Reduced setup complexity
+
+The user does not need to configure general-purpose automation rules.
+
+### Clear product responsibility
+
+The heating behaviour belongs to one product rather than depending on several independently manufactured devices and integrations.
+
+### Optional extensibility
+
+Home Assistant remains available for users who want broader smart-home integration.
+
+---
+
+## 17. Recommended homepage narrative
+
+### Section 1: The result
+
+> The right temperature in the room that matters.
+
+Show the thermostat and wireless sensor in a real home.
+
+### Section 2: The conventional thermostat limitation
+
+> A wall thermostat measures the temperature where it is installed.
+
+Show a thermostat in the hallway controlling a bathroom floor.
+
+### Section 3: The smart-home alternative
+
+> You could connect a sensor, gateway and relay and build your own automation.
+
+Show the idea briefly, without presenting a complicated technical diagram.
+
+### Section 4: The OSH solution
+
+> Or pair a sensor directly with a thermostat designed for this job.
+
+Show a simple three-step flow:
+
+* pair;
+* choose sensor;
+* set temperature.
+
+### Section 5: Multiple sensors
+
+> Monitor several rooms and select the reference temperature.
+
+### Section 6: Normal thermostat experience
+
+> Control everything from the built-in AMOLED touchscreen.
+
+### Section 7: Mobile application
+
+> Control heating remotely without maintaining a smart-home system.
+
+### Section 8: Product variants
+
+* OSH Floor;
+* OSH Boiler;
+* OSH OpenTherm.
+
+### Section 9: Optional smart-home integration
+
+> Already use Home Assistant? Connect OSH through the cloud.
+
+### Section 10: Installation and documentation
+
+Show wall-box and 55 × 55 mm compatibility.
+
+---
+
+## 18. Communication priority
+
+The recommended priority is:
+
+1. Correct temperature measurement independent of thermostat location.
+2. No need to build a smart-home automation.
+3. Wireless sensors and reference sensor selection.
+4. Normal thermostat experience with AMOLED control.
+5. Remote control from the mobile application.
+6. Versions for floor heating, dry contact and OpenTherm.
+7. Energy monitoring for electric heating.
+8. Optional Home Assistant integration.
+9. OTA updates and platform details.
+
+Home Assistant, Zigbee and OTA should not dominate the first screen.
+
+They support the product promise but are not the promise itself.
+
+---
+
+## 19. Recommended elevator pitch
+
+> OSH is designed for people who need more than a conventional thermostat but do not want to build a complete smart home. It combines a wall-mounted AMOLED thermostat, wireless Zigbee temperature sensors and mobile control in one finished system. The user pairs a sensor, chooses where the temperature should be measured and sets the required temperature without creating gateway automations or combining separate sensors and relays.
+
+---
+
+## 20. One-sentence pitch
+
+> OSH gives you wireless room sensing and mobile heating control without requiring a smart-home setup.
+
+---
+
+## 21. Internal positioning formula
+
+> Conventional thermostat simplicity
+>
+> * smart-home sensor flexibility
+> * dedicated heating control
+>   = OSH
+
+---
+
+## 22. Messaging guardrails
+
+Do not imply that:
+
+* Home Assistant or Tuya cannot reproduce the functionality;
+* smart-home automation is inherently unreliable;
+* all DIY solutions are unsafe;
+* OSH replaces a complete smart-home system;
+* the user never needs an internet connection;
+* Home Assistant integration is local;
+* all Zigbee sensors are compatible.
+
+Use a respectful contrast:
+
+> General smart-home platforms provide greater flexibility, but require more configuration. OSH focuses specifically on delivering the heating scenario as a finished product.
+
+# Самая сильная формула бренда
+
+Теперь у продукта есть две взаимосвязанные оси:
+
+**Функциональное отличие:**
+
+> Температура измеряется не обязательно там, где установлен термостат.
+
+**Категорийное позиционирование:**
+
+> Возможности умного отопления без необходимости строить умный дом.
+
+Вместе это можно выразить так:
+
+> **The right temperature in the right room — without building a smart home.**
+
+Это, на мой взгляд, сейчас наиболее точная центральная фраза для OSH.
+
+## Что это меняет в дизайне сайта
+
+Сайт не должен визуально напоминать интерфейс Home Assistant:
+
+* никаких схем из узлов;
+* графов автоматизаций;
+* множества протоколов в первом экране;
+* технических dashboard;
+* сложных сценариев `if/then`.
+
+Вместо этого нужно показывать простой путь:
+
+**Sensor → Room → Temperature**
+
+В интерфейсе приложения стоит визуально подчёркивать:
+
+* название комнаты;
+* текущий опорный датчик;
+* простое переключение датчика;
+* установленную температуру;
+* статус нагрева.
+
+Главная иллюстрация может содержать контраст:
+
+**Обычный термостат**
+
+> Измеряет 21,5 °C в коридоре.
+
+**OSH**
+
+> Измеряет 24,0 °C в ванной и управляет тёплым полом по этой температуре.
+
+А более сложную альтернативу с Home Assistant лучше не атаковать. Её можно уважительно представить так:
+
+> Experienced smart-home users can build similar behaviour with gateways and automations. OSH makes the same core heating scenario available as a finished thermostat product.
