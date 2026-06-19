@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import { siteAssets } from '@/content/media';
+import type { MediaAspect, MediaCopy } from '@/content';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+
+interface Props {
+  media: MediaCopy;
+}
+
+const { media } = Astro.props;
+const source = siteAssets[media.id];
+const aspectClass: Record<MediaAspect, string> = {
+  video: 'aspect-video',
+  square: 'aspect-square',
+  portrait: 'aspect-[4/5]',
+  wide: 'aspect-[2/1]'
+};
+const frameClass = `relative flex ${aspectClass[media.aspect]} min-h-56 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-soft`;
+---
+
+{
+  !source ? (
+    <MediaPlaceholder
+      id={media.id}
+      title={media.title}
+      description={media.description}
+      aspect={media.aspect}
+    />
+  ) : source.kind === 'image' ? (
+    <figure class={frameClass}>
+      <Image src={source.src} alt={media.alt} class="h-full w-full object-cover" />
+      <figcaption class="sr-only">{media.title}</figcaption>
+    </figure>
+  ) : (
+    <figure class={frameClass}>
+      <video
+        class="h-full w-full object-cover"
+        controls
+        muted
+        playsinline
+        preload="metadata"
+        poster={source.poster?.src}
+        aria-label={media.alt}
+      >
+        <source src={source.src} type={source.mimeType} />
+      </video>
+      <figcaption class="sr-only">{media.title}</figcaption>
+    </figure>
+  )
+}

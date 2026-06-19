@@ -1,0 +1,25 @@
+---
+import type { FaqContent } from '@/content';
+import FAQ from '@/components/FAQ.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+
+interface Props {
+  content: FaqContent;
+}
+
+const { content } = Astro.props;
+---
+
+<section id="faq" class="bg-paper py-16 sm:py-20">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      eyebrow={content.eyebrow}
+      title={content.title}
+      lead={content.lead}
+      align="center"
+    />
+    <div class="mt-10">
+      <FAQ items={content.items} />
+    </div>
+  </div>
+</section>

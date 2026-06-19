@@ -1,13 +1,15 @@
 ---
+import type { MediaAspect, MediaSlotId } from '@/content';
+
 interface Props {
-  id: string;
+  id: MediaSlotId;
   title: string;
   description: string;
-  aspect?: 'video' | 'square' | 'portrait' | 'wide';
+  aspect?: MediaAspect;
 }
 
 const { id, title, description, aspect = 'video' } = Astro.props;
-const aspectClass = {
+const aspectClass: Record<MediaAspect, string> = {
   video: 'aspect-video',
   square: 'aspect-square',
   portrait: 'aspect-[4/5]',

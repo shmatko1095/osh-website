@@ -22,12 +22,14 @@ render, and brand assets are ready.
 
 ## Candidate Source Materials
 
-- Device photos: `assets/device/`
-- Mobile app screenshots: `assets/oshmobile_screenshots/`
-- Current icon experiments: `assets/icon.png`, `assets/fire.png`
+- Device photo drafts: `design-sources/device/`
+- Mobile app screenshot drafts: `design-sources/oshmobile_screenshots/`
+- Current icon experiments: `design-sources/icon.png`, `design-sources/fire.png`
 
 ## Notes
 
 - Keep the landing page free of direct commerce CTAs until marketplace pages are real.
-- Generated images, product renders, and edited photos should be saved under `assets/`.
+- `design-sources/` contains drafts and source materials. Website code must not import files from this directory.
+- Approved production images belong in `src/assets/site/`; production videos and downloadable files belong in `public/media/`.
+- Register approved website media in the typed asset registry before replacing a placeholder.
 - Do not overwrite existing source photos; create versioned filenames for edited assets.

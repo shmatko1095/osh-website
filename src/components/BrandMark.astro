@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import { siteAssets } from '@/content/media';
+
+interface Props {
+  alt: string;
+  shadow?: boolean;
+}
+
+const { alt, shadow = false } = Astro.props;
+const source = siteAssets['LOGO-01'];
+const frameClass = `flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-slate-300 bg-white font-heading text-[10px] font-bold text-skytrust ${shadow ? 'shadow-sm' : ''}`;
+---
+
+{
+  source?.kind === 'image' ? (
+    <span class={frameClass}>
+      <Image src={source.src} alt={alt} class="h-full w-full object-contain" />
+    </span>
+  ) : (
+    <span class={frameClass} aria-label="LOGO-01">LOGO</span>
+  )
+}

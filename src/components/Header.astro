@@ -1,34 +1,31 @@
 ---
+import type { HeaderContent, Lang, LocaleDefinition } from '@/content';
+import BrandMark from './BrandMark.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
-import type { Lang } from '@/content/site';
 
 interface Props {
   currentLang: Lang;
-  nav: Array<{ href: string; label: string }>;
+  homePath: string;
+  content: HeaderContent;
+  languageOptions: Array<LocaleDefinition & { lang: Lang }>;
 }
 
-const { currentLang, nav } = Astro.props;
-const homePath = currentLang === 'uk' ? '/' : '/en/';
+const { currentLang, homePath, content, languageOptions } = Astro.props;
 ---
 
 <header class="sticky top-0 z-40 border-b border-slate-200 bg-paper/95 backdrop-blur">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
     <a href={homePath} class="flex min-w-0 items-center gap-3 rounded-lg transition-colors duration-200 hover:text-skytrust">
-      <span
-        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-300 bg-white font-heading text-[10px] font-bold text-skytrust shadow-sm"
-        aria-label="LOGO-01"
-      >
-        LOGO
-      </span>
+      <BrandMark alt={content.logoAlt} shadow />
       <span class="flex min-w-0 flex-col leading-tight">
         <span class="font-heading text-lg font-bold text-ink">OSH</span>
         <span class="text-xs font-semibold uppercase text-muted">LOGO-01</span>
       </span>
     </a>
 
-    <nav class="hidden items-center gap-1 md:flex" aria-label={currentLang === 'uk' ? 'Головна навігація' : 'Main navigation'}>
+    <nav class="hidden items-center gap-1 md:flex" aria-label={content.navLabel}>
       {
-        nav.map((item) => (
+        content.nav.map((item) => (
           <a
             href={item.href}
             class="rounded-lg px-3 py-2 text-sm font-bold text-slate-700 transition-colors duration-200 hover:bg-skysoft hover:text-skytrust"
@@ -39,6 +36,6 @@ const homePath = currentLang === 'uk' ? '/' : '/en/';
       }
     </nav>
 
-    <LanguageSwitcher currentLang={currentLang} />
+    <LanguageSwitcher currentLang={currentLang} label={content.languageLabel} options={languageOptions} />
   </div>
 </header>

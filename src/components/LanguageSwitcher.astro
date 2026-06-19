@@ -1,12 +1,13 @@
 ---
-import type { Lang } from '@/content/site';
+import type { Lang, LocaleDefinition } from '@/content';
 
 interface Props {
   currentLang: Lang;
+  label: string;
+  options: Array<LocaleDefinition & { lang: Lang }>;
 }
 
-const { currentLang } = Astro.props;
-const label = currentLang === 'uk' ? 'Мова сайту' : 'Site language';
+const { currentLang, label, options } = Astro.props;
 ---
 
 <label class="sr-only" for="language-switcher">{label}</label>
@@ -16,8 +17,11 @@ const label = currentLang === 'uk' ? 'Мова сайту' : 'Site language';
   class="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-ink transition-colors duration-200 hover:border-skytrust focus-visible:border-skytrust"
   aria-label={label}
 >
-  <option value="/" selected={currentLang === 'uk'}>UA</option>
-  <option value="/en/" selected={currentLang === 'en'}>EN</option>
+  {
+    options.map((option) => (
+      <option value={option.path} selected={currentLang === option.lang}>{option.label}</option>
+    ))
+  }
 </select>
 
 <script>
