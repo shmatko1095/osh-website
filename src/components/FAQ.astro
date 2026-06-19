@@ -1,0 +1,27 @@
+---
+import { CircleHelp } from 'lucide-astro';
+import type { FaqItem } from '@/content/site';
+
+interface Props {
+  items: FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+  {
+    items.map((item) => (
+      <details class="group p-5">
+        <summary class="flex cursor-pointer list-none items-start gap-3 font-heading text-lg font-bold text-ink">
+          <CircleHelp class="mt-0.5 shrink-0 text-skytrust" size={22} aria-hidden="true" />
+          <span class="grow">{item.question}</span>
+          <span class="shrink-0 text-skytrust transition-transform duration-200 group-open:rotate-45" aria-hidden="true">
+            +
+          </span>
+        </summary>
+        <p class="mt-4 pl-9 text-base leading-7 text-muted">{item.answer}</p>
+      </details>
+    ))
+  }
+</div>

@@ -1,0 +1,37 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  aspect?: 'video' | 'square' | 'portrait' | 'wide';
+}
+
+const { id, title, description, aspect = 'video' } = Astro.props;
+const aspectClass = {
+  video: 'aspect-video',
+  square: 'aspect-square',
+  portrait: 'aspect-[4/5]',
+  wide: 'aspect-[2/1]'
+}[aspect];
+---
+
+<figure
+  class={`relative flex ${aspectClass} min-h-56 overflow-hidden rounded-lg border border-dashed border-skytrust/60 bg-white shadow-soft`}
+  aria-label={`${id}: ${title}`}
+>
+  <div
+    class="absolute inset-0 opacity-70"
+    style="background-image: linear-gradient(#e0f2fe 1px, transparent 1px), linear-gradient(90deg, #e0f2fe 1px, transparent 1px); background-size: 28px 28px;"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative z-10 flex w-full flex-col justify-between p-5 sm:p-6">
+    <span class="w-fit rounded-lg border border-skytrust/30 bg-skysoft px-3 py-1 font-heading text-xs font-bold text-skytrust">
+      {id}
+    </span>
+    <figcaption class="max-w-md">
+      <p class="font-heading text-xl font-bold text-ink">{title}</p>
+      <p class="mt-2 text-sm leading-6 text-muted">{description}</p>
+    </figcaption>
+  </div>
+</figure>

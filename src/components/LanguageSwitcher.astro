@@ -1,0 +1,31 @@
+---
+import type { Lang } from '@/content/site';
+
+interface Props {
+  currentLang: Lang;
+}
+
+const { currentLang } = Astro.props;
+const label = currentLang === 'uk' ? 'Мова сайту' : 'Site language';
+---
+
+<label class="sr-only" for="language-switcher">{label}</label>
+<select
+  id="language-switcher"
+  data-language-switcher
+  class="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-ink transition-colors duration-200 hover:border-skytrust focus-visible:border-skytrust"
+  aria-label={label}
+>
+  <option value="/" selected={currentLang === 'uk'}>UA</option>
+  <option value="/en/" selected={currentLang === 'en'}>EN</option>
+</select>
+
+<script>
+  document.querySelectorAll<HTMLSelectElement>('[data-language-switcher]').forEach((select) => {
+    select.addEventListener('change', () => {
+      if (select.value && window.location.pathname !== select.value) {
+        window.location.href = select.value;
+      }
+    });
+  });
+</script>
