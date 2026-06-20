@@ -6,46 +6,65 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Default permission for verification jobs.
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   verify:
     runs-on: ubuntu-latest
-    outputs:
-      release_ready: ${{ steps.release.outputs.ready }}
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
       - run: npm ci
+
       - run: npx playwright install --with-deps chromium
+
       - run: npm run check
+
       - run: npm run build
+
       - run: npm run check:links
+
       - run: npm run test:e2e
-      - id: release
-        run: npm run release:status
-      - if: github.ref == 'refs/heads/main' && steps.release.outputs.ready == 'true'
-        uses: actions/upload-pages-artifact@v3
+
+      # Temporarily disabled.
+      # The site should deploy after successful checks on main without release gating.
+      #
+      # - id: release
+      #   run: npm run release:status
+
+      - if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
   deploy:
-    if: github.ref == 'refs/heads/main' && needs.verify.outputs.release_ready == 'true'
+    if: github.ref == 'refs/heads/main'
     needs: verify
     runs-on: ubuntu-latest
+
+    # Permissions required by GitHub Pages deployment.
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    # Prevent concurrent GitHub Pages deployments.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
