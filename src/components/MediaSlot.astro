@@ -6,9 +6,10 @@ import MediaPlaceholder from './MediaPlaceholder.astro';
 
 interface Props {
   media: MediaCopy;
+  priority?: boolean;
 }
 
-const { media } = Astro.props;
+const { media, priority = false } = Astro.props;
 const source = siteAssets[media.id];
 const aspectClass: Record<MediaAspect, string> = {
   video: 'aspect-video',
@@ -29,7 +30,13 @@ const frameClass = `relative flex ${aspectClass[media.aspect]} min-h-56 overflow
     />
   ) : source.kind === 'image' ? (
     <figure class={frameClass}>
-      <Image src={source.src} alt={media.alt} class="h-full w-full object-cover" />
+      <Image
+        src={source.src}
+        alt={media.alt}
+        class="h-full w-full object-cover"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : 'auto'}
+      />
       <figcaption class="sr-only">{media.title}</figcaption>
     </figure>
   ) : (
