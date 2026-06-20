@@ -1,39 +1,24 @@
 ---
-import type { MediaAspect, MediaSlotId } from '@/content';
+import { Image as ImageIcon } from 'lucide-astro';
+import type { MediaAspect, PlaceholderMediaSource } from '@/content';
 
 interface Props {
-  id: MediaSlotId;
   title: string;
   description: string;
-  aspect?: MediaAspect;
+  aspect: MediaAspect;
+  tone: PlaceholderMediaSource['tone'];
 }
 
-const { id, title, description, aspect = 'video' } = Astro.props;
-const aspectClass: Record<MediaAspect, string> = {
-  video: 'aspect-video',
-  square: 'aspect-square',
-  portrait: 'aspect-[4/5]',
-  wide: 'aspect-[2/1]'
-}[aspect];
+const { title, description, aspect, tone } = Astro.props;
+const aspectClass = { video: 'aspect-video', square: 'aspect-square', portrait: 'aspect-[4/5]', wide: 'aspect-[2/1]' }[aspect];
+const toneClass = tone === 'dark' ? 'bg-dark text-white' : tone === 'warm' ? 'bg-orange-50 text-dark' : 'bg-stone text-dark';
 ---
 
-<figure
-  class={`relative flex ${aspectClass} min-h-56 overflow-hidden rounded-lg border border-dashed border-skytrust/60 bg-white shadow-soft`}
-  aria-label={`${id}: ${title}`}
->
-  <div
-    class="absolute inset-0 opacity-70"
-    style="background-image: linear-gradient(#e0f2fe 1px, transparent 1px), linear-gradient(90deg, #e0f2fe 1px, transparent 1px); background-size: 28px 28px;"
-    aria-hidden="true"
-  >
-  </div>
-  <div class="relative z-10 flex w-full flex-col justify-between p-5 sm:p-6">
-    <span class="w-fit rounded-lg border border-skytrust/30 bg-skysoft px-3 py-1 font-heading text-xs font-bold text-skytrust">
-      {id}
-    </span>
-    <figcaption class="max-w-md">
-      <p class="font-heading text-xl font-bold text-ink">{title}</p>
-      <p class="mt-2 text-sm leading-6 text-muted">{description}</p>
-    </figcaption>
-  </div>
+<figure class={`relative flex ${aspectClass} overflow-hidden rounded-[28px] ${toneClass}`} data-placeholder-media>
+  <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle at 20% 20%, rgba(249,115,22,.32), transparent 35%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.28), transparent 42%);" aria-hidden="true"></div>
+  <figcaption class="relative z-10 flex w-full flex-col justify-end p-6 sm:p-8">
+    <ImageIcon class="mb-auto opacity-60" size={28} stroke-width={1.7} aria-hidden="true" />
+    <p class="text-xl font-bold">{title}</p>
+    <p class={`mt-2 max-w-md text-sm leading-6 ${tone === 'dark' ? 'text-white/65' : 'text-muted'}`}>{description}</p>
+  </figcaption>
 </figure>

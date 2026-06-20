@@ -1,0 +1,35 @@
+---
+import { Mail, MessageCircle } from 'lucide-astro';
+import { productFacts, site, siteConfig } from '@/content';
+import type { Lang } from '@/content';
+import FAQ from '../FAQ.astro';
+import PageHero from '../PageHero.astro';
+import SiteFrame from '../SiteFrame.astro';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const content = site[lang].support;
+const warrantyText = content.warrantyText.replace('{months}', String(productFacts.warrantyMonths));
+---
+
+<SiteFrame lang={lang} page="support">
+  <PageHero eyebrow={content.eyebrow} title={content.title} lead={content.lead} />
+  <section class="section-space bg-page">
+    <div class="site-container grid gap-6 lg:grid-cols-2">
+      <article class="rounded-[28px] bg-white p-7 sm:p-9"><p class="text-6xl font-extrabold tracking-[-0.06em] text-heat-dark">{productFacts.warrantyMonths}</p><h2 class="mt-6 text-3xl font-extrabold tracking-[-0.035em] text-dark">{content.warrantyTitle}</h2><p class="mt-4 text-base leading-7 text-muted">{warrantyText}</p></article>
+      <article class="rounded-[28px] bg-dark p-7 text-white sm:p-9"><h2 class="text-3xl font-extrabold tracking-[-0.035em]">{content.cloudTitle}</h2><p class="mt-5 text-base leading-7 text-white/65">{content.cloudText}</p></article>
+    </div>
+  </section>
+  <section class="section-space bg-white">
+    <div class="site-container">
+      <h2 class="section-title text-dark">{content.channelsTitle}</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        <a href={`mailto:${siteConfig.email}`} class="group rounded-[28px] bg-stone p-7 transition-colors hover:bg-orange-50 sm:p-9"><Mail class="text-heat-dark" size={27} aria-hidden="true" /><h3 class="mt-8 text-2xl font-bold text-dark">{content.emailLabel}</h3><p class="mt-3 text-muted group-hover:text-dark">{siteConfig.email}</p></a>
+        <a href={siteConfig.telegramUrl} target="_blank" rel="noreferrer" class="group rounded-[28px] bg-stone p-7 transition-colors hover:bg-orange-50 sm:p-9"><MessageCircle class="text-heat-dark" size={27} aria-hidden="true" /><h3 class="mt-8 text-2xl font-bold text-dark">{content.telegramLabel}</h3><p class="mt-3 text-muted group-hover:text-dark">@shmatko1095</p></a>
+      </div>
+    </div>
+  </section>
+  <section class="section-space bg-page">
+    <div class="site-container grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-16"><h2 class="section-title text-dark">{content.faqTitle}</h2><FAQ items={content.faq} /></div>
+  </section>
+</SiteFrame>

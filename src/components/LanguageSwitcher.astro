@@ -1,35 +1,27 @@
 ---
-import type { Lang, LocaleDefinition } from '@/content';
+import { alternateLang, locales, routePath } from '@/content';
+import type { Lang, PageKey } from '@/content';
 
 interface Props {
-  currentLang: Lang;
+  lang: Lang;
+  page: PageKey;
   label: string;
-  options: Array<LocaleDefinition & { lang: Lang }>;
+  inverse?: boolean;
 }
 
-const { currentLang, label, options } = Astro.props;
+const { lang, page, label, inverse = false } = Astro.props;
+const nextLang = alternateLang(lang);
 ---
 
-<label class="sr-only" for="language-switcher">{label}</label>
-<select
-  id="language-switcher"
-  data-language-switcher
-  class="cursor-pointer rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-ink transition-colors duration-200 hover:border-skytrust focus-visible:border-skytrust"
-  aria-label={label}
+<a
+  href={routePath(nextLang, page)}
+  hreflang={locales[nextLang].htmlLang}
+  aria-label={`${label}: ${locales[nextLang].label}`}
+  class={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border px-3 text-sm font-bold transition-colors duration-200 ${
+    inverse
+      ? 'border-white/20 text-white hover:border-white/50 hover:bg-white/10'
+      : 'border-line bg-white text-dark hover:border-dark/30 hover:bg-stone'
+  }`}
 >
-  {
-    options.map((option) => (
-      <option value={option.path} selected={currentLang === option.lang}>{option.label}</option>
-    ))
-  }
-</select>
-
-<script>
-  document.querySelectorAll<HTMLSelectElement>('[data-language-switcher]').forEach((select) => {
-    select.addEventListener('change', () => {
-      if (select.value && window.location.pathname !== select.value) {
-        window.location.href = select.value;
-      }
-    });
-  });
-</script>
+  {locales[nextLang].label}
+</a>

@@ -1,0 +1,36 @@
+---
+import { routePath, siteConfig } from '@/content';
+import type { Lang, SiteContent } from '@/content';
+import BrandMark from './BrandMark.astro';
+
+interface Props { lang: Lang; content: SiteContent; }
+const { lang, content } = Astro.props;
+---
+
+<footer class="bg-dark text-white">
+  <div class="site-container grid gap-12 py-14 sm:py-16 lg:grid-cols-[1.2fr_1fr_1fr]">
+    <div>
+      <a href={routePath(lang, 'home')} class="inline-flex rounded-full"><BrandMark inverse /></a>
+      {content.footer.text && <p class="mt-5 max-w-sm text-base leading-7 text-white/60">{content.footer.text}</p>}
+    </div>
+    <nav aria-label={content.footer.navigationLabel}>
+      <p class="text-sm font-bold text-white/45">{content.footer.navigationLabel}</p>
+      <ul class="mt-4 space-y-3">
+        {content.nav.map((item) => <li><a href={routePath(lang, item.page)} class="text-white/75 hover:text-white">{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <div>
+      <p class="text-sm font-bold text-white/45">{content.footer.contactLabel}</p>
+      <ul class="mt-4 space-y-3">
+        <li><a href={`mailto:${siteConfig.email}`} class="text-white/75 hover:text-white">{siteConfig.email}</a></li>
+        <li><a href={siteConfig.telegramUrl} target="_blank" rel="noreferrer" class="text-white/75 hover:text-white">Telegram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="site-container flex flex-col gap-2 py-5 text-sm text-white/45 sm:flex-row sm:justify-between">
+      <span>© {new Date().getFullYear()} OSH</span>
+      <span>{content.footer.rights}</span>
+    </div>
+  </div>
+</footer>

@@ -1,16 +1,10 @@
 import { en } from './en';
 import { uk } from './uk';
-import type { Lang, LocaleDefinition, SiteContent } from './types';
+import type { Lang, SiteContent } from './types';
 
-export const locales = {
-  uk: { htmlLang: 'uk', path: '/', label: 'UA' },
-  en: { htmlLang: 'en', path: '/en/', label: 'EN' }
-} satisfies Record<Lang, LocaleDefinition>;
-
-export const localeOptions = Object.entries(locales).map(([lang, locale]) => ({
-  lang: lang as Lang,
-  ...locale
-}));
+export { alternateLang, locales, routePath, siteConfig } from './site-config';
+export { productFacts } from './product-facts';
+export { siteAssets } from './media';
 
 export const site = { uk, en } satisfies Record<Lang, SiteContent>;
 

@@ -1,0 +1,21 @@
+---
+import { Activity, Gauge, Radio, ShieldCheck, Smartphone, Thermometer } from 'lucide-astro';
+import type { FeatureItem } from '@/content';
+
+interface Props { items: FeatureItem[]; }
+const { items } = Astro.props;
+const icons = { thermometer: Thermometer, radio: Radio, activity: Activity, shield: ShieldCheck, smartphone: Smartphone, gauge: Gauge };
+---
+
+<div class="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+  {items.map((item) => {
+    const Icon = icons[item.icon as keyof typeof icons] ?? Thermometer;
+    return (
+      <article>
+        <Icon class="text-dark" size={29} stroke-width={1.8} aria-hidden="true" />
+        <h3 class="mt-5 text-xl font-bold text-dark">{item.title}</h3>
+        <p class="mt-3 max-w-sm text-base leading-7 text-muted">{item.text}</p>
+      </article>
+    );
+  })}
+</div>

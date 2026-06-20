@@ -1,0 +1,13 @@
+---
+interface Item { label: string; value: string; }
+interface Props { items: Item[]; inverse?: boolean; }
+const { items, inverse = false } = Astro.props;
+---
+<dl class={`grid gap-px overflow-hidden rounded-3xl ${inverse ? 'bg-white/10' : 'bg-line'} sm:grid-cols-3`}>
+  {items.map((item) => (
+    <div class={`p-5 sm:p-6 ${inverse ? 'bg-dark' : 'bg-white'}`}>
+      <dt class={`text-sm font-semibold ${inverse ? 'text-white/55' : 'text-muted'}`}>{item.label}</dt>
+      <dd class={`mt-2 text-2xl font-extrabold ${inverse ? 'text-white' : 'text-dark'}`}>{item.value}</dd>
+    </div>
+  ))}
+</dl>

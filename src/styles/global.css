@@ -4,49 +4,53 @@
 
 :root {
   color-scheme: light;
-  background: #f8fbff;
-  color: #0f172a;
+  background: #f7f7f5;
+  color: #2c2e2e;
+  font-family: 'Manrope Variable', system-ui, sans-serif;
+  font-synthesis: none;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: #f8fbff;
-  color: #0f172a;
-  font-family: 'Nunito Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+  background: #f7f7f5;
+  color: #2c2e2e;
   text-rendering: optimizeLegibility;
 }
 
-h1,
-h2,
-h3,
-.font-heading {
-  font-family: 'Rubik', system-ui, sans-serif;
-  letter-spacing: 0;
-}
+a, button, summary { -webkit-tap-highlight-color: transparent; }
+a { text-underline-offset: 3px; }
 
-::selection {
-  background: #bae6fd;
-  color: #082f49;
-}
+::selection { background: #fed7aa; color: #12111d; }
 
 :focus-visible {
-  outline: 3px solid #0ea5e9;
+  outline: 3px solid #0369a1;
   outline-offset: 3px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+[id] { scroll-margin-top: 88px; }
 
-  *,
-  *::before,
-  *::after {
+@layer components {
+  .site-container { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .section-space { @apply py-16 sm:py-20 lg:py-24; }
+  .eyebrow { @apply text-xs font-extrabold uppercase tracking-[0.18em]; }
+  .section-title { @apply text-[clamp(2.25rem,5vw,4rem)] font-extrabold leading-[1.02] tracking-[-0.045em]; }
+  .section-lead { @apply text-lg leading-8 sm:text-xl; }
+  .button-primary { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-heat px-6 py-3 text-base font-extrabold text-dark transition-colors duration-200 hover:bg-heat-hover; }
+  .button-secondary { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-dark/20 bg-transparent px-6 py-3 text-base font-bold text-dark transition-colors duration-200 hover:border-dark hover:bg-white; }
+  .page-hero { background: radial-gradient(circle at 82% 18%, rgba(249,115,22,.14), transparent 24rem), #fff; }
+  .skip-link { @apply fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-dark px-5 py-3 font-bold text-white transition-transform focus:translate-y-0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;

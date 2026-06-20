@@ -1,39 +1,29 @@
 ---
-import { Image } from 'astro:assets';
-import { siteAssets } from '@/content/media';
+import { Picture } from 'astro:assets';
+import { siteAssets } from '@/content';
 import type { MediaAspect, MediaCopy } from '@/content';
 import MediaPlaceholder from './MediaPlaceholder.astro';
 
-interface Props {
-  media: MediaCopy;
-  priority?: boolean;
-}
-
+interface Props { media: MediaCopy; priority?: boolean; }
 const { media, priority = false } = Astro.props;
 const source = siteAssets[media.id];
-const aspectClass: Record<MediaAspect, string> = {
-  video: 'aspect-video',
-  square: 'aspect-square',
-  portrait: 'aspect-[4/5]',
-  wide: 'aspect-[2/1]'
-};
-const frameClass = `relative flex ${aspectClass[media.aspect]} min-h-56 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-soft`;
+const aspectClass: Record<MediaAspect, string> = { video: 'aspect-video', square: 'aspect-square', portrait: 'aspect-[4/5]', wide: 'aspect-[2/1]' };
+const fitClass = media.fit === 'contain' ? 'object-contain p-4 sm:p-6' : 'object-cover';
+const frameClass = `relative flex ${aspectClass[media.aspect]} overflow-hidden rounded-[28px] bg-white`;
 ---
 
 {
-  !source ? (
-    <MediaPlaceholder
-      id={media.id}
-      title={media.title}
-      description={media.description}
-      aspect={media.aspect}
-    />
+  source.kind === 'placeholder' ? (
+    <MediaPlaceholder title={media.title} description={media.description} aspect={media.aspect} tone={source.tone} />
   ) : source.kind === 'image' ? (
     <figure class={frameClass}>
-      <Image
+      <Picture
         src={source.src}
         alt={media.alt}
-        class="h-full w-full object-cover"
+        formats={['avif', 'webp']}
+        widths={[480, 768, 1080, 1440]}
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 55vw, 700px"
+        class={`h-full w-full ${fitClass}`}
         loading={priority ? 'eager' : 'lazy'}
         fetchpriority={priority ? 'high' : 'auto'}
       />
@@ -41,15 +31,7 @@ const frameClass = `relative flex ${aspectClass[media.aspect]} min-h-56 overflow
     </figure>
   ) : (
     <figure class={frameClass}>
-      <video
-        class="h-full w-full object-cover"
-        controls
-        muted
-        playsinline
-        preload="metadata"
-        poster={source.poster?.src}
-        aria-label={media.alt}
-      >
+      <video class={`h-full w-full ${fitClass}`} controls muted playsinline preload="metadata" poster={source.poster?.src} aria-label={media.alt}>
         <source src={source.src} type={source.mimeType} />
       </video>
       <figcaption class="sr-only">{media.title}</figcaption>

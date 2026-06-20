@@ -1,0 +1,18 @@
+---
+import { site } from '@/content';
+import type { Lang, PageKey } from '@/content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import SiteFooter from './SiteFooter.astro';
+
+interface Props { lang: Lang; page: PageKey; }
+const { lang, page } = Astro.props;
+const content = site[lang];
+---
+
+<BaseLayout lang={lang} page={page} seo={content.seo[page]}>
+  <a href="#main-content" class="skip-link">{lang === 'uk' ? 'Перейти до вмісту' : 'Skip to content'}</a>
+  <Header lang={lang} page={page} content={content} />
+  <main id="main-content"><slot /></main>
+  <SiteFooter lang={lang} content={content} />
+</BaseLayout>

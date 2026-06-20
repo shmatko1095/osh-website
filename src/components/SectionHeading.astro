@@ -3,15 +3,33 @@ interface Props {
   eyebrow: string;
   title: string;
   lead: string;
+  leadItems?: Array<{
+    label: string;
+    text: string;
+  }>;
   align?: 'left' | 'center';
+  inverse?: boolean;
 }
 
-const { eyebrow, title, lead, align = 'left' } = Astro.props;
+const { eyebrow, title, lead, leadItems = [], align = 'left', inverse = false } = Astro.props;
 const alignment = align === 'center' ? 'mx-auto text-center' : '';
 ---
 
 <div class={`max-w-3xl ${alignment}`}>
-  <p class="mb-3 font-heading text-sm font-bold uppercase text-skytrust">{eyebrow}</p>
-  <h2 class="text-3xl font-bold leading-tight text-ink sm:text-4xl">{title}</h2>
-  <p class="mt-4 text-lg leading-8 text-muted">{lead}</p>
+  <p class={`eyebrow ${inverse ? 'text-orange-300' : 'text-heat-dark'}`}>{eyebrow}</p>
+  <h2 class={`section-title mt-4 ${inverse ? 'text-white' : 'text-dark'}`}>{title}</h2>
+  {leadItems.length > 0 ? (
+    <ul class="mt-6 space-y-4">
+      {leadItems.map((item) => (
+        <li class={`border-l pl-4 ${inverse ? 'border-white/15' : 'border-dark/10'}`}>
+          <p class={`text-base leading-7 sm:text-lg ${inverse ? 'text-white/70' : 'text-muted'}`}>
+            <span class={`font-bold ${inverse ? 'text-white' : 'text-dark'}`}>{item.label}</span>
+            <span>{` — ${item.text}`}</span>
+          </p>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    lead && <p class={`section-lead mt-5 whitespace-pre-line ${inverse ? 'text-white/70' : 'text-muted'}`}>{lead}</p>
+  )}
 </div>

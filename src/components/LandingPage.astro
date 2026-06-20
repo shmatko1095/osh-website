@@ -1,47 +1,150 @@
 ---
+import { ArrowRight, Check, ExternalLink } from 'lucide-astro';
+import { productFacts, routePath, site } from '@/content';
 import type { Lang } from '@/content';
-import { localeOptions, locales, site } from '@/content';
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Header from './Header.astro';
-import AppSection from './sections/AppSection.astro';
-import CompatibilitySection from './sections/CompatibilitySection.astro';
-import FaqSection from './sections/FaqSection.astro';
-import HeroSection from './sections/HeroSection.astro';
-import OfflineSection from './sections/OfflineSection.astro';
-import ProductSection from './sections/ProductSection.astro';
-import ScenarioSection from './sections/ScenarioSection.astro';
-import SiteFooter from './sections/SiteFooter.astro';
-import SolutionSection from './sections/SolutionSection.astro';
-import TrustSection from './sections/TrustSection.astro';
+import BenefitList from './BenefitList.astro';
+import CapabilityCard from './CapabilityCard.astro';
+import FAQ from './FAQ.astro';
+import MediaSlot from './MediaSlot.astro';
+import SectionHeading from './SectionHeading.astro';
+import SetupSteps from './SetupSteps.astro';
+import SiteFrame from './SiteFrame.astro';
+import SpecificationGrid from './SpecificationGrid.astro';
+import TrustPanel from './TrustPanel.astro';
 
-interface Props {
-  lang: Lang;
-}
-
+interface Props { lang: Lang; }
 const { lang } = Astro.props;
-const locale = locales[lang];
-const content = site[lang];
+const content = site[lang].home;
+const locale = lang === 'uk' ? 'uk-UA' : 'en-US';
+const price = new Intl.NumberFormat(locale).format(productFacts.starterKitPriceUah) + (lang === 'uk' ? ' грн' : ' UAH');
+const warranty = `${productFacts.warrantyMonths} ${lang === 'uk' ? 'місяці' : 'months'}`;
 ---
 
-<BaseLayout lang={locale.htmlLang} title={content.seo.title} description={content.seo.description} canonicalPath={locale.path}>
-  <Header
-    currentLang={lang}
-    homePath={locale.path}
-    content={content.header}
-    languageOptions={localeOptions}
-  />
+<SiteFrame lang={lang} page="home">
+  <section class="overflow-hidden bg-white">
+    <div class="site-container grid gap-12 py-12 sm:py-16 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-20">
+      <div class="relative z-10">
+        <p class="eyebrow text-heat-dark">{content.hero.eyebrow}</p>
+        <h1 class="mt-5 max-w-4xl text-[clamp(3rem,7.2vw,6.5rem)] font-extrabold leading-[.94] tracking-[-0.065em] text-dark">{content.hero.title}</h1>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-muted sm:text-xl">{content.hero.lead}</p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#benefits" class="button-primary">{content.hero.primaryCta}<ArrowRight size={18} aria-hidden="true" /></a>
+          <a href="#setup" class="button-secondary">{content.hero.secondaryCta}</a>
+        </div>
+        <ul class="mt-10 flex flex-col gap-3 border-t border-line pt-6 text-sm font-semibold text-muted sm:flex-row sm:flex-wrap sm:gap-x-7">
+          {content.hero.highlights.map((item) => <li class="flex items-center gap-2"><Check class="text-heat-dark" size={17} aria-hidden="true" />{item}</li>)}
+        </ul>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-16 rounded-full bg-orange-100/60 blur-3xl" aria-hidden="true"></div>
+        <div class="relative"><MediaSlot media={content.hero.media} priority /></div>
+      </div>
+    </div>
+  </section>
 
-  <main>
-    <HeroSection content={content.hero} />
-    <ScenarioSection content={content.scenario} />
-    <SolutionSection content={content.solution} />
-    <ProductSection content={content.product} />
-    <AppSection content={content.app} />
-    <OfflineSection content={content.offline} />
-    <CompatibilitySection content={content.compatibility} />
-    <TrustSection content={content.trust} />
-    <FaqSection content={content.faq} />
-  </main>
+  <section id="benefits" class="section-space bg-page">
+    <div class="site-container">
+      <SectionHeading {...content.benefits} align="center" />
+      <div class="mt-14 sm:mt-16"><BenefitList items={content.benefits.items} /></div>
+    </div>
+  </section>
 
-  <SiteFooter content={content.footer} />
-</BaseLayout>
+  <section class="bg-page pb-16 sm:pb-20 lg:pb-24">
+    <div class="site-container">
+      <div class="overflow-hidden rounded-[32px] bg-dark px-6 py-10 text-white sm:px-10 sm:py-14 lg:grid lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-14 lg:p-14">
+        <div>
+          <SectionHeading {...content.differentiator} inverse />
+          <ul class="mt-8 space-y-4 text-base leading-7 text-white/70">
+            {content.differentiator.points.map((item) => <li class="flex gap-3"><Check class="mt-1 shrink-0 text-orange-300" size={18} aria-hidden="true" /><span>{item}</span></li>)}
+          </ul>
+        </div>
+        <div class="mt-10 lg:mt-0"><MediaSlot media={content.differentiator.media} /></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capabilities" class="section-space overflow-hidden bg-stone">
+    <div class="site-container">
+      <SectionHeading {...content.capabilities} />
+      <div class="-mr-4 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 pr-4 sm:-mr-6 sm:pr-6 lg:mr-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pr-0">
+        {content.capabilities.items.map((item) => <CapabilityCard item={item} />)}
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="section-space bg-white">
+    <div class="site-container grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16">
+      <div>
+        <SectionHeading {...content.setup} />
+        <div class="mt-12"><SetupSteps steps={content.setup.steps} /></div>
+      </div>
+      <MediaSlot media={content.setup.media} />
+    </div>
+  </section>
+
+  <section id="product" class="section-space bg-page">
+    <div class="site-container">
+      <SectionHeading {...content.kit} />
+      <div class="mt-12 grid gap-8 lg:grid-cols-[1.1fr_.9fr] lg:items-stretch">
+        <MediaSlot media={content.kit.media} />
+        <div class="flex flex-col rounded-[28px] bg-white p-6 sm:p-8">
+          <h3 class="text-2xl font-bold text-dark">{content.kit.itemsTitle}</h3>
+          <ul class="mt-6 space-y-4 text-base leading-7 text-muted">
+            {content.kit.items.map((item) => <li class="flex gap-3"><Check class="mt-1 shrink-0 text-heat-dark" size={18} aria-hidden="true" /><span>{item}</span></li>)}
+          </ul>
+          <div class="mt-auto pt-10">
+            <SpecificationGrid items={[
+              { label: content.kit.priceLabel, value: price },
+              { label: content.kit.currentLabel, value: `${productFacts.maxCurrentAmp} A` },
+              { label: content.kit.warrantyLabel, value: warranty }
+            ]} />
+            {productFacts.isDraft && <p class="mt-4 text-sm leading-6 text-muted">{content.kit.draftNote}</p>}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-white">
+    <div class="site-container grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-16">
+      <div>
+        <SectionHeading {...content.installation} />
+        {content.installation.points.length > 0 && (
+          <div class="mt-10 grid gap-8 sm:grid-cols-3 lg:grid-cols-1">
+            {content.installation.points.map((item) => <article class="border-t border-line pt-5"><h3 class="text-xl font-bold text-dark">{item.title}</h3><p class="mt-3 text-base leading-7 text-muted">{item.text}</p></article>)}
+          </div>
+        )}
+      </div>
+      <MediaSlot media={content.installation.media} />
+    </div>
+  </section>
+
+  <section id="trust" class="section-space bg-dark text-white">
+    <div class="site-container">
+      <SectionHeading {...content.trust} inverse />
+      <div class="mt-12 grid gap-6 lg:grid-cols-2">
+        <MediaSlot media={content.trust.localMedia} />
+        <TrustPanel localTitle={content.trust.localTitle} onlineTitle={content.trust.onlineTitle} local={content.trust.local} online={content.trust.online} />
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section-space bg-white">
+    <div class="site-container grid gap-12 lg:grid-cols-[.75fr_1.25fr] lg:gap-16">
+      <SectionHeading {...content.faq} />
+      <FAQ items={content.faq.items} />
+    </div>
+  </section>
+
+  <section class="bg-white pb-16 sm:pb-20 lg:pb-24">
+    <div class="site-container">
+      <div class="rounded-[32px] bg-heat px-6 py-10 text-dark sm:px-10 sm:py-14 lg:flex lg:items-end lg:justify-between lg:gap-12 lg:p-14">
+        <div class="max-w-3xl"><h2 class="section-title">{content.finalCta.title}</h2><p class="mt-5 text-lg leading-8 text-dark">{content.finalCta.text}</p></div>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row lg:mt-0">
+          <a href={routePath(lang, 'docs')} class="button-secondary border-dark bg-white/30">{content.finalCta.docs}</a>
+          <a href={routePath(lang, 'contact')} class="button-primary bg-dark text-white hover:bg-black">{content.finalCta.contact}<ExternalLink size={17} aria-hidden="true" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</SiteFrame>

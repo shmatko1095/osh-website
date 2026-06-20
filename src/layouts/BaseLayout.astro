@@ -1,34 +1,69 @@
 ---
+import '@fontsource-variable/manrope';
 import '../styles/global.css';
+import ph01Hero from '@/assets/site/ph-01-hero-v1.png';
+import { productFacts, routePath, siteConfig } from '@/content';
+import type { Lang, PageKey, PageSeo } from '@/content';
 
 interface Props {
-  lang: string;
-  title: string;
-  description: string;
-  canonicalPath: string;
+  lang: Lang;
+  page: PageKey;
+  seo: PageSeo;
 }
 
-const { lang, title, description, canonicalPath } = Astro.props;
-const canonicalUrl = Astro.site ? new URL(canonicalPath, Astro.site).toString() : null;
+const { lang, page, seo } = Astro.props;
+const canonicalUrl = new URL(routePath(lang, page), siteConfig.url).toString();
+const ukUrl = new URL(routePath('uk', page), siteConfig.url).toString();
+const enUrl = new URL(routePath('en', page), siteConfig.url).toString();
+const ogImageUrl = new URL(ph01Hero.src, siteConfig.url).toString();
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url, email: siteConfig.email },
+    { '@type': 'WebSite', name: siteConfig.name, url: siteConfig.url, inLanguage: ['uk', 'en'] },
+    {
+      '@type': 'Product',
+      name: siteConfig.productName,
+      brand: { '@type': 'Brand', name: siteConfig.name },
+      description: seo.description,
+      image: ogImageUrl,
+      additionalProperty: [
+        { '@type': 'PropertyValue', name: 'Maximum current', value: `${productFacts.maxCurrentAmp} A` },
+        { '@type': 'PropertyValue', name: 'Warranty', value: `${productFacts.warrantyMonths} months` }
+      ]
+    }
+  ]
+};
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang === 'uk' ? 'uk' : 'en'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
+    <meta name="description" content={seo.description} />
     <meta name="generator" content={Astro.generator} />
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Rubik:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>{title}</title>
+    <meta name="theme-color" content="#12111D" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="uk" href={ukUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={ukUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OSH" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={lang === 'uk' ? 'uk_UA' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <title>{seo.title}</title>
   </head>
-  <body class="font-body antialiased">
+  <body>
     <slot />
   </body>
 </html>

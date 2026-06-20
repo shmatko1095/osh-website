@@ -26,8 +26,8 @@ brand or trade dress.
 - Mostly white and very light grey surfaces with near-black text.
 - Warm orange is concentrated in CTAs and small device-state accents.
 - Near-black `#12111D` creates high-contrast editorial chapters.
-- Figtree is used for both headings and body copy; OSH retains its existing
-  Rubik/Nunito Sans pairing rather than copying the typeface.
+- Figtree is used for both headings and body copy; OSH uses self-hosted variable
+  Manrope for Latin and Cyrillic rather than copying the typeface.
 - Desktop content is capped near 1284px.
 - Major panels use 24-32px radii; buttons are pill-shaped.
 - Product and lifestyle media carries more visual weight than decorative UI.
@@ -73,8 +73,8 @@ OSH should use normal document flow and native overflow rails.
 ### Claim density
 
 tado can support strong savings percentages and mature feature claims with an
-established product. OSH is in development and must not borrow the tone or
-numbers without its own evidence.
+established product. OSH must not borrow the tone or numbers without its own
+evidence.
 
 ### Commerce-first navigation
 
@@ -98,21 +98,20 @@ heading order independently of visual styling.
 
 | tado pattern | OSH adaptation |
 |---|---|
-| Energy-saving hero claim | Correct-room comfort claim with visible development status |
-| Six-benefit icon grid | 3-6 verified OSH outcomes |
+| Energy-saving hero claim | Correct-room comfort claim with two explanatory CTAs |
+| Six-benefit icon grid | Six concise OSH outcomes without heavy cards |
 | Dark “why tado” panel | Local-first and reference-sensor differentiation panel |
 | AI feature carousel | App/history/wall UI grid or native mobile rail |
-| Four-step setup chapter | Check, install, pair, choose mode; no time promise |
+| Four-step setup chapter | Install, connect sensor, choose room and set mode; no time promise |
 | Heating-system taxonomy | Installation/frame plus tested sensor compatibility |
 | Savings proof | Local/offline, electrical, and test evidence |
-| Shop CTA | In-page learn-more CTA until marketplace availability |
+| Shop CTA | Documentation and contact CTA without checkout |
 | Dense global footer | Compact bilingual product/support footer |
 
 ## Resulting direction
 
 The transferable idea is product editorial storytelling: show a tangible device,
 state a human outcome, summarize benefits, then progressively answer setup,
-compatibility, and trust objections. OSH should combine that rhythm with its own
-light blue trust palette, orange heating accent, local-first architecture, and
-evidence-led launch status.
-
+compatibility, and trust objections. OSH combines that rhythm with a monochrome
+light editorial system, one dark chapter, orange heating accents, local-first
+architecture and explicit preliminary product facts.

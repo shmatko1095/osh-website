@@ -1,0 +1,11 @@
+---
+interface Props { eyebrow: string; title: string; lead: string; }
+const { eyebrow, title, lead } = Astro.props;
+---
+<section class="page-hero">
+  <div class="site-container py-16 sm:py-20 lg:py-24">
+    <p class="eyebrow text-heat-dark">{eyebrow}</p>
+    <h1 class="mt-5 max-w-5xl text-[clamp(2.75rem,7vw,5.75rem)] font-extrabold leading-[.98] tracking-[-0.055em] text-dark">{title}</h1>
+    <p class="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">{lead}</p>
+  </div>
+</section>

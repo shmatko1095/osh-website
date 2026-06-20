@@ -1,34 +1,32 @@
 ---
-import type { HeaderContent, Lang, LocaleDefinition } from '@/content';
+import { Menu, X } from 'lucide-astro';
+import { routePath } from '@/content';
+import type { Lang, PageKey, SiteContent } from '@/content';
 import BrandMark from './BrandMark.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
-  currentLang: Lang;
-  homePath: string;
-  content: HeaderContent;
-  languageOptions: Array<LocaleDefinition & { lang: Lang }>;
+  lang: Lang;
+  page: PageKey;
+  content: SiteContent;
 }
 
-const { currentLang, homePath, content, languageOptions } = Astro.props;
+const { lang, page, content } = Astro.props;
 ---
 
-<header class="sticky top-0 z-40 border-b border-slate-200 bg-paper/95 backdrop-blur">
-  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-    <a href={homePath} class="flex min-w-0 items-center gap-3 rounded-lg transition-colors duration-200 hover:text-skytrust">
-      <BrandMark alt={content.logoAlt} shadow />
-      <span class="flex min-w-0 flex-col leading-tight">
-        <span class="font-heading text-lg font-bold text-ink">OSH</span>
-        <span class="text-xs font-semibold uppercase text-muted">LOGO-01</span>
-      </span>
+<header class="sticky top-0 z-50 border-b border-line/80 bg-white/95 backdrop-blur-md" data-site-header>
+  <div class="site-container flex h-[72px] items-center justify-between gap-5">
+    <a href={routePath(lang, 'home')} class="rounded-full" aria-label="OSH home">
+      <BrandMark />
     </a>
 
-    <nav class="hidden items-center gap-1 md:flex" aria-label={content.navLabel}>
+    <nav class="hidden items-center gap-1 lg:flex" aria-label={content.navigationLabel}>
       {
         content.nav.map((item) => (
           <a
-            href={item.href}
-            class="rounded-lg px-3 py-2 text-sm font-bold text-slate-700 transition-colors duration-200 hover:bg-skysoft hover:text-skytrust"
+            href={routePath(lang, item.page)}
+            aria-current={page === item.page ? 'page' : undefined}
+            class="rounded-full px-4 py-2.5 text-sm font-semibold text-muted transition-colors duration-200 hover:bg-stone hover:text-dark aria-[current=page]:bg-stone aria-[current=page]:text-dark"
           >
             {item.label}
           </a>
@@ -36,6 +34,64 @@ const { currentLang, homePath, content, languageOptions } = Astro.props;
       }
     </nav>
 
-    <LanguageSwitcher currentLang={currentLang} label={content.languageLabel} options={languageOptions} />
+    <div class="flex items-center gap-2">
+      <LanguageSwitcher lang={lang} page={page} label={content.languageLabel} />
+      <button
+        type="button"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-dark transition-colors hover:border-dark/30 hover:bg-stone lg:hidden"
+        aria-label={content.menuOpenLabel}
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+        data-menu-button
+        data-open-label={content.menuOpenLabel}
+        data-close-label={content.menuCloseLabel}
+      >
+        <Menu class="menu-open-icon" size={21} aria-hidden="true" />
+        <X class="menu-close-icon hidden" size={21} aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-navigation" class="hidden border-t border-line bg-white lg:hidden" data-menu-panel>
+    <nav class="site-container grid gap-1 py-4" aria-label={content.navigationLabel}>
+      {
+        content.nav.map((item) => (
+          <a
+            href={routePath(lang, item.page)}
+            aria-current={page === item.page ? 'page' : undefined}
+            class="rounded-2xl px-4 py-3 text-base font-semibold text-muted hover:bg-stone hover:text-dark aria-[current=page]:bg-stone aria-[current=page]:text-dark"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
   </div>
 </header>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-site-header]').forEach((header) => {
+    const button = header.querySelector<HTMLButtonElement>('[data-menu-button]');
+    const panel = header.querySelector<HTMLElement>('[data-menu-panel]');
+    const openIcon = header.querySelector<HTMLElement>('.menu-open-icon');
+    const closeIcon = header.querySelector<HTMLElement>('.menu-close-icon');
+    if (!button || !panel || !openIcon || !closeIcon) return;
+
+    const setOpen = (open: boolean) => {
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? button.dataset.closeLabel ?? '' : button.dataset.openLabel ?? '');
+      panel.classList.toggle('hidden', !open);
+      openIcon.classList.toggle('hidden', open);
+      closeIcon.classList.toggle('hidden', !open);
+    };
+
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+    panel.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        button.focus();
+      }
+    });
+  });
+</script>

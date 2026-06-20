@@ -1,273 +1,188 @@
-import type { SiteContent } from './types';
+import type { FeatureItem, SiteContent } from './types';
 
 export const en = {
   seo: {
-    title: 'OSH Floor — thermostat with a wireless room temperature sensor',
-    description:
-      'OSH Floor controls floor heating by the temperature in the room that matters, without a separate Zigbee gateway or custom smart-home automations.'
+    home: { title: 'OSH Floor — smart thermostat for the room that matters', description: 'Control electric floor heating by the temperature in the room you choose, without a separate Zigbee gateway or custom automations.' },
+    compatibility: { title: 'OSH Floor compatibility — sensors and 55 × 55 frames', description: 'Check OSH Floor compatibility with wireless temperature sensors, frames, and installation conditions.' },
+    docs: { title: 'OSH Floor documentation', description: 'How the reference sensor, modes, local controls, and network features work in OSH Floor.' },
+    support: { title: 'OSH Floor support', description: 'Warranty, local behaviour, cloud features, and OSH Floor support channels.' },
+    contact: { title: 'Contact OSH', description: 'Contact OSH about the product, installation, support, or partnerships.' }
   },
-  header: {
-    navLabel: 'Main navigation',
-    languageLabel: 'Site language',
-    logoAlt: 'OSH logo',
-    nav: [
-      { href: '#scenario', label: 'Scenario' },
-      { href: '#solution', label: 'How it works' },
-      { href: '#product', label: 'Kit' },
-      { href: '#app', label: 'Demo' },
-      { href: '#trust', label: 'Trust' },
-      { href: '#faq', label: 'FAQ' }
-    ]
-  },
-  hero: {
-    eyebrow: 'OSH Floor',
-    status: 'First batch in development',
-    title: 'Precise temperature where it matters.',
-    lead:
-      'Control floor heating based on the temperature in the right room — without a separate Zigbee gateway or complex automations.',
-    cta: 'Learn more',
-    facts: [
-      { label: 'Reference sensor', value: 'room temperature' },
-      { label: 'Local schedules', value: 'stored on device' },
-      { label: 'Floor NTC', value: 'surface limit' }
-    ],
-    media: {
-      id: 'PH-01',
-      title: 'Hero product scene',
-      description: 'Clean thermostat-on-wall scene as the first product signal.',
-      alt: 'OSH Floor thermostat mounted on a wall.',
-      aspect: 'portrait'
-    }
-  },
-  scenario: {
-    eyebrow: 'Scenario',
-    title: 'A thermostat is often installed somewhere other than the room you care about.',
-    lead:
-      'The warm floor may be in the bathroom while the wall unit sits in the hallway. The built-in sensor sees the temperature around the device, not where comfort is expected.',
-    points: [
-      {
-        icon: 'home',
-        title: 'Wrong room',
-        text: 'A hallway thermostat does not know the actual air temperature in the bathroom.'
-      },
-      {
-        icon: 'thermometer',
-        title: 'Floor sensing is not air sensing',
-        text: 'The NTC in the floor is important for limiting heat, but it does not measure room comfort.'
-      },
-      {
-        icon: 'layers',
-        title: 'Smart home becomes a project',
-        text: 'A hub, sensor, relay, and automations can work, but that is often harder than the original problem.'
-      }
-    ],
-    media: {
-      id: 'PH-02',
-      title: 'Hallway to bathroom scenario',
-      description: 'Visual: wall unit in hallway, wireless sensor in bathroom, different temperatures.',
-      alt: 'Thermostat in the hallway and wireless sensor in the bathroom.',
-      aspect: 'video'
-    }
-  },
-  solution: {
-    eyebrow: 'Solution',
-    title: 'OSH moves the measurement to the right room.',
-    lead: 'The thermostat stays on the wall, while the reference temperature comes from a supported wireless sensor.',
-    steps: [
-      {
-        title: 'Pair a sensor',
-        text: 'Add a supported Zigbee sensor without a separate gateway for the core scenario.'
-      },
-      {
-        title: 'Choose the room',
-        text: 'Name the sensor and use it as the reference sensor for one connected heating output.'
-      },
-      {
-        title: 'Set the mode',
-        text: 'Manual, Daily, Weekly, or Temperature range can run from the screen and stored configuration.'
-      }
-    ],
-    media: {
-      id: 'PH-03',
-      title: 'Pair, choose, set',
-      description: 'Simple 3-step visual: sensor, reference room, temperature or schedule.',
-      alt: 'Three OSH Floor setup steps: sensor, room, and temperature.',
-      aspect: 'square'
-    }
-  },
-  product: {
-    eyebrow: 'First product',
-    title: 'OSH Floor Starter Kit',
-    lead: 'The first kit concept for electric floor heating: wall thermostat, floor sensor, and a wireless room sensor.',
-    status: 'In development for the first batch',
-    kitTitle: 'Kit contents',
-    kit: [
-      'OSH Floor wall thermostat',
-      'wired NTC for floor temperature limiting',
-      'supported wireless Zigbee sensor',
-      'manual, wiring diagram, and warranty information'
-    ],
-    features: [
-      {
-        icon: 'thermometer',
-        title: 'Room reference sensor',
-        text: 'Heating can follow the temperature in the room where comfort matters.'
-      },
-      {
-        icon: 'smartphone',
-        title: 'Wall screen and app',
-        text: 'Core controls are available on the wall; remote functions use the network.'
-      },
-      {
-        icon: 'gauge',
-        title: 'Energy and history',
-        text: 'Energy tracking and temperature graphs are planned to explain floor behavior.'
-      }
-    ],
-    kitMedia: {
-      id: 'PH-08',
-      title: 'Starter Kit',
-      description: 'Future kit contents without extra smart-home boxes.',
-      alt: 'OSH Floor Starter Kit contents.',
-      aspect: 'video'
+  navigationLabel: 'Main navigation',
+  languageLabel: 'Site language',
+  menuOpenLabel: 'Open menu',
+  menuCloseLabel: 'Close menu',
+  nav: [
+    { page: 'home', label: 'OSH Floor' },
+    { page: 'compatibility', label: 'Compatibility' },
+    { page: 'docs', label: 'Docs' },
+    { page: 'support', label: 'Support' },
+    { page: 'contact', label: 'Contact' }
+  ],
+  home: {
+    hero: {
+      eyebrow: 'OSH Floor',
+      title: 'The right temperature where it truly matters.',
+      lead: 'Control floor heating with a wireless sensor in the room you care about. No separate Zigbee gateway and no custom automations.',
+      primaryCta: 'Learn more',
+      secondaryCta: 'How it works',
+      highlights: ['Wireless reference sensor', 'Core functions work locally', 'Floor protection with NTC'],
+      media: { id: 'PH-01', title: 'OSH Floor thermostat', description: 'A wall thermostat with an AMOLED screen in a modern interior.', alt: 'OSH Floor thermostat mounted on a wall.', aspect: 'portrait' }
     },
-    closeupMedia: {
-      id: 'PH-04',
-      title: 'Product close-up',
-      description: 'Close-up screen: current temperature, target, reference sensor.',
-      alt: 'OSH Floor screen with current and target temperatures.',
-      aspect: 'video'
-    }
-  },
-  app: {
-    eyebrow: 'Demo',
-    title: 'Control on the wall and in the app.',
-    lead: 'This first site maps the future media set: dashboard, temperature history, and a short AMOLED interaction video.',
-    cards: [
-      {
-        id: 'PH-05',
-        title: 'App dashboard',
-        description: 'Main screen with temperature, modes, heating status, and activity.',
-        alt: 'OSH app dashboard.',
-        aspect: 'portrait'
-      },
-      {
-        id: 'PH-06',
-        title: 'Temperature history',
-        description: 'Day/week graph with target and heating markers.',
-        alt: 'Temperature history in the OSH app.',
-        aspect: 'portrait'
-      },
-      {
-        id: 'PH-07',
-        title: 'Wall UI video',
-        description: 'Short clip showing mode or schedule changes on the device screen.',
-        alt: 'Changing a mode on the OSH Floor screen.',
-        aspect: 'portrait'
-      }
-    ]
-  },
-  offline: {
-    eyebrow: 'Local behavior',
-    title: 'Core heating does not disappear when the internet is down.',
-    lead:
-      'OSH should not promise that every feature works offline. The key is separating local heating logic from cloud-dependent features.',
-    localTitle: 'Works locally',
-    onlineTitle: 'Needs network',
-    local: ['temperature regulation', 'paired sensors', 'schedules and modes', 'floor NTC limit', 'AMOLED screen control'],
-    online: ['mobile app', 'remote control', 'cloud Home Assistant', 'online history', 'OTA updates'],
-    media: {
-      id: 'PH-09',
-      title: 'Offline behavior diagram',
-      description: 'Diagram: cloud unavailable while local heating logic keeps running.',
-      alt: 'Diagram of OSH Floor working locally without internet.',
-      aspect: 'square'
-    }
+    benefits: {
+      eyebrow: 'Capabilities',
+      title: 'More flexible than a thermostat. Simpler than a smart home.',
+      lead: 'OSH Floor combines measurement, control, and floor protection in one purpose-built device.',
+      items: [
+        { icon: 'thermometer', title: 'Temperature in the right room', text: 'Place a wireless sensor where comfort is expected.' },
+        { icon: 'radio', title: 'No separate gateway', text: 'A supported Zigbee sensor pairs directly with OSH Floor.' },
+        { icon: 'activity', title: 'Local schedules', text: 'Modes and schedules are stored on the thermostat.' },
+        { icon: 'shield', title: 'Floor temperature limit', text: 'A wired NTC keeps floor heating within a safe limit.' },
+        { icon: 'smartphone', title: 'Wall screen and app', text: 'Control heating on the wall or remotely in the mobile app.' },
+        { icon: 'gauge', title: 'History and energy', text: 'Review temperature, heating activity, and energy use.' }
+      ]
+    },
+    differentiator: {
+      eyebrow: 'Why OSH',
+      title: 'The thermostat stays on the wall. The temperature comes from the right room.',
+      lead: 'The warm floor may be in the bathroom while the wall unit is in the hallway. OSH controls heating from the sensor you choose as the reference.',
+      points: ['See temperatures from several supported sensors.', 'Choose one sensor to control the connected heating circuit.', 'Change the reference room without rebuilding smart-home automations.'],
+      media: { id: 'PH-02', title: 'Hallway and bathroom', description: 'A scenario where the thermostat and comfort room are in different places.', alt: 'Thermostat in the hallway and wireless sensor in the bathroom.', aspect: 'video' }
+    },
+    capabilities: {
+      eyebrow: 'Control',
+      title: 'Everything important is available on the wall and in the app.',
+      lead: 'Each interface has a clear job: quick changes on the wall, remote control, and understandable history.',
+      items: [
+        { title: 'AMOLED controls', text: 'Temperature, mode, schedule, and reference-sensor status directly on the thermostat.', media: { id: 'PH-04', title: 'OSH Floor display', description: 'Current temperature, target, and heating state.', alt: 'OSH Floor thermostat interface.', aspect: 'portrait', fit: 'contain' } },
+        { title: 'Mobile app', text: 'Change mode and temperature remotely and check device state.', media: { id: 'PH-05', title: 'App dashboard', description: 'Temperature, mode, and heating activity.', alt: 'OSH mobile app dashboard.', aspect: 'portrait', fit: 'contain' } },
+        { title: 'Temperature history', text: 'Compare room temperature, target, and heating periods.', media: { id: 'PH-06', title: 'Temperature history', description: 'A day or week graph.', alt: 'Temperature history in the OSH app.', aspect: 'portrait', fit: 'contain' } },
+        { title: 'Quick wall changes', text: 'Change a mode or schedule even when the phone is not nearby.', media: { id: 'PH-07', title: 'Wall interaction', description: 'A short OSH Floor control video.', alt: 'Changing a mode on the OSH Floor display.', aspect: 'portrait', fit: 'contain' } }
+      ]
+    },
+    setup: {
+      eyebrow: 'Setup',
+      title: 'Pair a sensor. Choose a room. Set the temperature.',
+      lead: 'The core scenario needs no separate smart-home gateway, relay, or custom automations.',
+      steps: [
+        { title: 'Install OSH Floor', text: 'Replace a compatible thermostat and connect the floor NTC.' },
+        { title: 'Pair a sensor', text: 'Add a supported wireless temperature sensor.' },
+        { title: 'Choose the room', text: 'Name the sensor and make it the heating reference.' },
+        { title: 'Set the mode', text: 'Choose Manual, Daily, Weekly, or Temperature range.' }
+      ],
+      media: { id: 'PH-03', title: 'Four setup steps', description: 'Installation, sensor, room, and mode.', alt: 'OSH Floor setup sequence.', aspect: 'square', fit: 'contain' }
+    },
+    kit: {
+      eyebrow: 'Starter Kit',
+      title: 'OSH Floor Starter Kit',
+      lead: 'One kit for the core electric floor-heating scenario.',
+      itemsTitle: 'In the box',
+      items: ['OSH Floor thermostat', 'wired floor NTC', 'supported wireless sensor', 'manual and warranty information'],
+      priceLabel: 'Indicative price',
+      currentLabel: 'Maximum current',
+      warrantyLabel: 'Warranty',
+      draftNote: 'Preliminary specifications and pricing may be updated.',
+      media: { id: 'PH-08', title: 'OSH Floor Starter Kit', description: 'Thermostat, NTC, wireless sensor, and documentation.', alt: 'OSH Floor Starter Kit contents.', aspect: 'video', fit: 'contain' }
+    },
+    installation: {
+      eyebrow: 'Installation',
+      title: 'Designed for familiar in-wall installation.',
+      lead: 'OSH Floor fits a standard wall box and supports the 55 × 55 mm frame format.',
+      points: [] as FeatureItem[],
+      media: { id: 'PH-11', title: 'Installation and frame', description: 'Depth, terminals, wall box, and compatible frame.', alt: 'OSH Floor installation in a wall box and frame.', aspect: 'video', fit: 'contain' }
+    },
+    trust: {
+      eyebrow: 'Reliability',
+      title: 'Core heating does not depend on the cloud.',
+      lead: 'Local logic keeps working without internet, while network-dependent features are clearly separated.',
+      localTitle: 'Works locally',
+      onlineTitle: 'Needs network',
+      local: ['temperature control', 'paired sensors', 'modes and schedules', 'floor NTC limit', 'AMOLED controls'],
+      online: ['mobile app', 'remote control', 'online history', 'OTA updates', 'cloud integration'],
+      localMedia: { id: 'PH-09', title: 'Local operation', description: 'The thermostat and sensor continue working when cloud access is unavailable.', alt: 'OSH Floor local operation without internet.', aspect: 'square', fit: 'contain' }
+    },
+    faq: {
+      eyebrow: 'FAQ',
+      title: 'Answers before installation.',
+      lead: 'The essentials about sensors, internet access, rooms, and safe floor control.',
+      items: [
+        { question: 'Do I need a separate Zigbee gateway?', answer: 'No. A supported sensor pairs directly with OSH Floor.' },
+        { question: 'Does the thermostat work without internet?', answer: 'Yes. Regulation, sensors, modes, schedules, NTC, and wall controls work locally.' },
+        { question: 'Can I connect any Zigbee sensor?', answer: 'No. Compatibility depends on the exact model and version. Current statuses are listed on the [compatibility page](/en/compatibility/).' },
+        { question: 'Can one thermostat control several rooms?', answer: 'One OSH Floor controls one connected heating circuit. It can see several sensors, but one is selected as the reference.' },
+        { question: 'Why is a floor NTC still needed?', answer: 'The floor NTC can work as the heating reference or as a floor-temperature limit. It helps keep the surface comfortable to walk on and prevents the floor covering from overheating.' }
+      ]
+    },
+    finalCta: { title: 'Learn more about OSH Floor.', text: 'Explore how it works, check compatibility, or contact us about your installation.', docs: 'View documentation', contact: 'Contact us' }
   },
   compatibility: {
     eyebrow: 'Compatibility',
-    title: 'Supported Zigbee sensors, not every Zigbee sensor.',
-    lead: 'A Zigbee logo does not mean identical behavior. OSH should publish a tested list and a support level for each model.',
-    levelsTitle: 'Compatibility levels',
-    levels: ['Official', 'Supported', 'Compatible with limitations', 'Community tested', 'Not supported'],
-    note: 'Each future compatibility-list row should include model, firmware, reporting interval, battery level, and known limitations.'
+    title: 'Verified compatibility instead of broad promises.',
+    lead: 'A Zigbee logo or 55 × 55 format does not guarantee identical behaviour for every model.',
+    frameTitle: 'Frames and installation',
+    frameText: 'OSH Floor uses the 55 × 55 mm format. Compatibility with a frame series depends on mechanics, depth, and the mounting adapter.',
+    sensorTitle: 'Wireless sensors',
+    sensorText: 'The statuses below are working values and may change after additional testing.',
+    modelLabel: 'Model',
+    statusLabel: 'Status',
+    statuses: { supported: 'Supported', testing: 'Testing' },
+    policyTitle: 'What is tested',
+    policyItems: ['temperature and humidity', 'reporting interval', 'battery level', 'recovery after signal loss', 'behaviour after restart'],
+    contactCta: 'Ask about compatibility'
   },
-  trust: {
-    eyebrow: 'Trust',
-    title: '230 V needs proof, not claims.',
-    lead:
-      'Early materials should show how the product is tested, what happens when a sensor is lost, and which limitations are already known.',
-    features: [
-      {
-        icon: 'shield',
-        title: 'Safety-first messaging',
-        text: 'Load rating, enclosure temperature, and terminals need test evidence.'
-      },
-      {
-        icon: 'cloudOff',
-        title: 'Honest cloud policy',
-        text: 'Cloud features are separated from local heating control.'
-      },
-      {
-        icon: 'fileText',
-        title: 'Ukrainian documentation',
-        text: 'Wiring, FAQ, compatibility list, and support should be clear before marketplace pages appear.'
-      }
+  docs: {
+    eyebrow: 'Documentation',
+    title: 'How OSH Floor controls heating.',
+    lead: 'Core workflows and system boundaries without unnecessary smart-home jargon.',
+    workflowTitle: 'Reference sensor workflow',
+    workflowSteps: ['pair a supported sensor', 'give it a room name', 'select it as the reference', 'set a temperature or schedule'],
+    modesTitle: 'Modes',
+    modes: [
+      { title: 'Manual', text: 'Maintains the selected temperature without a schedule.' },
+      { title: 'Daily schedule', text: 'Uses the same schedule every day.' },
+      { title: 'Weekly schedule', text: 'Uses a separate schedule for each weekday.' },
+      { title: 'Temperature range', text: 'Keeps temperature between a minimum and maximum.' }
     ],
-    testingMedia: {
-      id: 'PH-10',
-      title: 'Safety and load testing',
-      description: 'Real photos of load testing, enclosure temperature, or a lab bench.',
-      alt: 'OSH Floor load and enclosure-temperature testing.',
-      aspect: 'video'
-    },
-    installationMedia: {
-      id: 'PH-11',
-      title: 'Installation and frame fit',
-      description: 'Frame, wall box, depth, and terminal compatibility visual.',
-      alt: 'OSH Floor installation in a wall box and frame.',
-      aspect: 'video'
-    }
+    boundariesTitle: 'Local and network features',
+    localTitle: 'On the device',
+    onlineTitle: 'Through the network',
+    local: ['regulation', 'schedules', 'sensors', 'floor NTC', 'display'],
+    online: ['mobile app', 'remote control', 'history', 'OTA', 'cloud integration'],
+    downloadsTitle: 'Installation files',
+    downloadsText: 'The manual, wiring diagram, and frame list will appear here after final documents are registered.'
   },
-  faq: {
-    eyebrow: 'FAQ',
-    title: 'Questions worth answering early.',
-    lead: 'Technical honesty matters for trust in a new 230 V device.',
-    items: [
-      {
-        question: 'Do I need a separate Zigbee gateway?',
-        answer:
-          'For the core scenario with a supported wireless sensor, no separate smart-home gateway is needed: the sensor pairs with OSH Floor.'
-      },
-      {
-        question: 'Does the thermostat work without internet?',
-        answer:
-          'Core temperature regulation, paired sensors, modes, schedules, and screen control should work locally. The mobile app, remote control, OTA, and cloud Home Assistant need network access.'
-      },
-      {
-        question: 'Can I connect any Zigbee sensor?',
-        answer: 'No. OSH should support tested sensors from multiple vendors and publish a compatibility list with limitations.'
-      },
-      {
-        question: 'Can it control multiple rooms independently?',
-        answer:
-          'The current OSH Floor concept controls one connected heating output. It can show multiple sensors and choose one reference, but it is not a multi-zone controller.'
-      },
-      {
-        question: 'Why use floor NTC if there is a room sensor?',
-        answer: 'The wireless sensor measures room air. The wired NTC is used for floor protection and maximum surface temperature limiting.'
-      },
-      {
-        question: 'Why not just use Aqara or Terneo?',
-        answer:
-          'If a user already has the right ecosystem, another product may be a rational choice. OSH focuses on a ready room-sensor workflow without a separate gateway for the core function, plus local controls and Ukrainian support.'
-      }
+  support: {
+    eyebrow: 'Support',
+    title: 'Support before and after installation.',
+    lead: 'Help with compatibility, setup, local behaviour, and warranty questions.',
+    warrantyTitle: 'Warranty',
+    warrantyText: 'The current warranty period is {months} months. This is a preliminary value and may be updated in the terms of sale.',
+    cloudTitle: 'Local operation and cloud services',
+    cloudText: 'Core regulation works locally. The app, remote control, online history, OTA, and cloud integration require network access.',
+    channelsTitle: 'Support channels',
+    emailLabel: 'Send an email',
+    telegramLabel: 'Open Telegram',
+    faqTitle: 'Common questions',
+    faq: [
+      { question: 'What if a sensor does not pair?', answer: 'Check the model on the compatibility page and contact support with the model name and device version.' },
+      { question: 'Will heating stop without Wi-Fi?', answer: 'No. Local thermostat functions continue to work without Wi-Fi or cloud access.' },
+      { question: 'Who should install OSH Floor?', answer: 'A qualified professional should perform the 230 V connection according to local requirements.' }
     ]
   },
-  footer: {
-    logoAlt: 'OSH logo',
-    text: 'OSH Floor is the first product in a future OSH line for heating and home energy.',
-    marketplaceId: 'PH-12',
-    marketplace: 'Public marketplace pages will be added after the first batch is ready.'
-  }
+  contact: {
+    eyebrow: 'Contact',
+    title: 'Tell us about your installation.',
+    lead: 'Questions about the product, installation, support, or partnerships are welcome by email or Telegram.',
+    emailTitle: 'Email',
+    emailText: 'For formal requests, documents, and detailed issue descriptions.',
+    telegramTitle: 'Telegram',
+    telegramText: 'For quick product, compatibility, and setup questions.',
+    audiencesTitle: 'Who we work with',
+    audiences: [
+      { title: 'Homeowners', text: 'Use-case selection, compatibility, and OSH Floor operation.' },
+      { title: 'Electricians and installers', text: 'Mounting, frames, documentation, and repeat installations.' },
+      { title: 'Partners', text: 'Renovation companies, retailers, reviews, and distribution.' }
+    ]
+  },
+  footer: { text: 'OSH builds understandable products for heating and home energy.', navigationLabel: 'Navigation', contactLabel: 'Contact', rights: 'All rights reserved.' }
 } satisfies SiteContent;
