@@ -1,12 +1,11 @@
 export const LANGS = ['uk', 'en'] as const;
 export type Lang = (typeof LANGS)[number];
 
-export const PAGE_KEYS = ['home', 'compatibility', 'docs', 'support', 'contact'] as const;
+export const PAGE_KEYS = ['home', 'compatibility', 'docs', 'support'] as const;
 export type PageKey = (typeof PAGE_KEYS)[number];
 
 export const MEDIA_SLOT_IDS = [
   'PH-01',
-  'PH-02',
   'PH-03',
   'PH-04',
   'PH-05',
@@ -121,7 +120,6 @@ export interface CapabilityItem {
 export interface HomeContent {
   hero: HeroContent;
   benefits: HeadingContent & { items: FeatureItem[] };
-  differentiator: HeadingContent & { points: string[]; media: MediaCopy };
   capabilities: HeadingContent & { items: CapabilityItem[] };
   setup: HeadingContent & { steps: Array<{ title: string; text: string }> ; media: MediaCopy };
   kit: HeadingContent & {
@@ -142,7 +140,7 @@ export interface HomeContent {
     localMedia: MediaCopy;
   };
   faq: HeadingContent & { items: FaqItem[] };
-  finalCta: { title: string; text: string; docs: string; contact: string };
+  finalCta: { title: string; text: string; docs: string; support: string };
 }
 
 export interface CompatibilityContent extends HeadingContent {
@@ -155,7 +153,7 @@ export interface CompatibilityContent extends HeadingContent {
   statuses: Record<SensorCompatibilityFact['status'], string>;
   policyTitle: string;
   policyItems: string[];
-  contactCta: string;
+  supportCta: string;
 }
 
 export interface DocsContent extends HeadingContent {
@@ -184,15 +182,6 @@ export interface SupportContent extends HeadingContent {
   faq: FaqItem[];
 }
 
-export interface ContactContent extends HeadingContent {
-  emailTitle: string;
-  emailText: string;
-  telegramTitle: string;
-  telegramText: string;
-  audiencesTitle: string;
-  audiences: Array<{ title: string; text: string }>;
-}
-
 export interface FooterContent {
   text: string;
   navigationLabel: string;
@@ -211,7 +200,6 @@ export interface SiteContent {
   compatibility: CompatibilityContent;
   docs: DocsContent;
   support: SupportContent;
-  contact: ContactContent;
   footer: FooterContent;
 }
 

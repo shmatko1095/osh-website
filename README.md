@@ -11,7 +11,6 @@ Tailwind CSS and typed content.
 | `/compatibility/` | `/en/compatibility/` |
 | `/docs/` | `/en/docs/` |
 | `/support/` | `/en/support/` |
-| `/contact/` | `/en/contact/` |
 
 ## Commands
 

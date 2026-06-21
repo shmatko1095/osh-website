@@ -46,7 +46,7 @@ const content = site[lang].compatibility;
         <ul class="mt-7 space-y-4">
           {content.policyItems.map((item) => <li class="flex gap-3 text-base text-muted"><Check class="mt-0.5 shrink-0 text-heat-dark" size={19} aria-hidden="true" />{item}</li>)}
         </ul>
-        <a href={routePath(lang, 'contact')} class="button-primary mt-9">{content.contactCta}<ArrowRight size={18} aria-hidden="true" /></a>
+        <a href={routePath(lang, 'support')} class="button-primary mt-9">{content.supportCta}<ArrowRight size={18} aria-hidden="true" /></a>
       </div>
     </div>
   </section>

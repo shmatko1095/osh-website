@@ -17,8 +17,7 @@ const pageSegments: Record<PageKey, string> = {
   home: '',
   compatibility: 'compatibility',
   docs: 'docs',
-  support: 'support',
-  contact: 'contact'
+  support: 'support'
 };
 
 export function routePath(lang: Lang, page: PageKey): string {

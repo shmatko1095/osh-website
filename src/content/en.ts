@@ -5,8 +5,7 @@ export const en = {
     home: { title: 'OSH Floor — smart thermostat for the room that matters', description: 'Control electric floor heating by the temperature in the room you choose, without a separate Zigbee gateway or custom automations.' },
     compatibility: { title: 'OSH Floor compatibility — sensors and 55 × 55 frames', description: 'Check OSH Floor compatibility with wireless temperature sensors, frames, and installation conditions.' },
     docs: { title: 'OSH Floor documentation', description: 'How the reference sensor, modes, local controls, and network features work in OSH Floor.' },
-    support: { title: 'OSH Floor support', description: 'Warranty, local behaviour, cloud features, and OSH Floor support channels.' },
-    contact: { title: 'Contact OSH', description: 'Contact OSH about the product, installation, support, or partnerships.' }
+    support: { title: 'OSH Floor support', description: 'Warranty, local behaviour, cloud features, and OSH Floor support channels.' }
   },
   navigationLabel: 'Main navigation',
   languageLabel: 'Site language',
@@ -16,8 +15,7 @@ export const en = {
     { page: 'home', label: 'OSH Floor' },
     { page: 'compatibility', label: 'Compatibility' },
     { page: 'docs', label: 'Docs' },
-    { page: 'support', label: 'Support' },
-    { page: 'contact', label: 'Contact' }
+    { page: 'support', label: 'Support' }
   ],
   home: {
     hero: {
@@ -41,13 +39,6 @@ export const en = {
         { icon: 'smartphone', title: 'Wall screen and app', text: 'Control heating on the wall or remotely in the mobile app.' },
         { icon: 'gauge', title: 'History and energy', text: 'Review temperature, heating activity, and energy use.' }
       ]
-    },
-    differentiator: {
-      eyebrow: 'Why OSH',
-      title: 'The thermostat stays on the wall. The temperature comes from the right room.',
-      lead: 'The warm floor may be in the bathroom while the wall unit is in the hallway. OSH controls heating from the sensor you choose as the reference.',
-      points: ['See temperatures from several supported sensors.', 'Choose one sensor to control the connected heating circuit.', 'Change the reference room without rebuilding smart-home automations.'],
-      media: { id: 'PH-02', title: 'Hallway and bathroom', description: 'A scenario where the thermostat and comfort room are in different places.', alt: 'Thermostat in the hallway and wireless sensor in the bathroom.', aspect: 'video' }
     },
     capabilities: {
       eyebrow: 'Control',
@@ -113,7 +104,7 @@ export const en = {
         { question: 'Why is a floor NTC still needed?', answer: 'The floor NTC can work as the heating reference or as a floor-temperature limit. It helps keep the surface comfortable to walk on and prevents the floor covering from overheating.' }
       ]
     },
-    finalCta: { title: 'Learn more about OSH Floor.', text: 'Explore how it works, check compatibility, or contact us about your installation.', docs: 'View documentation', contact: 'Contact us' }
+    finalCta: { title: 'Learn more about OSH Floor.', text: 'Explore how it works, check compatibility, or open support channels for your installation.', docs: 'View documentation', support: 'Support' }
   },
   compatibility: {
     eyebrow: 'Compatibility',
@@ -128,7 +119,7 @@ export const en = {
     statuses: { supported: 'Supported', testing: 'Testing' },
     policyTitle: 'What is tested',
     policyItems: ['temperature and humidity', 'reporting interval', 'battery level', 'recovery after signal loss', 'behaviour after restart'],
-    contactCta: 'Ask about compatibility'
+    supportCta: 'Ask about compatibility'
   },
   docs: {
     eyebrow: 'Documentation',
@@ -167,21 +158,6 @@ export const en = {
       { question: 'What if a sensor does not pair?', answer: 'Check the model on the compatibility page and contact support with the model name and device version.' },
       { question: 'Will heating stop without Wi-Fi?', answer: 'No. Local thermostat functions continue to work without Wi-Fi or cloud access.' },
       { question: 'Who should install OSH Floor?', answer: 'A qualified professional should perform the 230 V connection according to local requirements.' }
-    ]
-  },
-  contact: {
-    eyebrow: 'Contact',
-    title: 'Tell us about your installation.',
-    lead: 'Questions about the product, installation, support, or partnerships are welcome by email or Telegram.',
-    emailTitle: 'Email',
-    emailText: 'For formal requests, documents, and detailed issue descriptions.',
-    telegramTitle: 'Telegram',
-    telegramText: 'For quick product, compatibility, and setup questions.',
-    audiencesTitle: 'Who we work with',
-    audiences: [
-      { title: 'Homeowners', text: 'Use-case selection, compatibility, and OSH Floor operation.' },
-      { title: 'Electricians and installers', text: 'Mounting, frames, documentation, and repeat installations.' },
-      { title: 'Partners', text: 'Renovation companies, retailers, reviews, and distribution.' }
     ]
   },
   footer: { text: 'OSH builds understandable products for heating and home energy.', navigationLabel: 'Navigation', contactLabel: 'Contact', rights: 'All rights reserved.' }

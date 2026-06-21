@@ -9,7 +9,7 @@ const { media, priority = false } = Astro.props;
 const source = siteAssets[media.id];
 const aspectClass: Record<MediaAspect, string> = { video: 'aspect-video', square: 'aspect-square', portrait: 'aspect-[4/5]', wide: 'aspect-[2/1]' };
 const fitClass = media.fit === 'contain' ? 'object-contain p-4 sm:p-6' : 'object-cover';
-const frameClass = `relative flex ${aspectClass[media.aspect]} overflow-hidden rounded-[28px] bg-white`;
+const frameClass = `relative flex ${aspectClass[media.aspect]} overflow-hidden rounded-[24px] bg-white sm:rounded-[28px]`;
 ---
 
 {

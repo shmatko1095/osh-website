@@ -22,22 +22,26 @@ const warranty = `${productFacts.warrantyMonths} ${lang === 'uk' ? 'місяці
 
 <SiteFrame lang={lang} page="home">
   <section class="overflow-hidden bg-white">
-    <div class="site-container grid gap-12 py-12 sm:py-16 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-20">
-      <div class="relative z-10">
+    <div class="site-container grid gap-8 py-10 sm:gap-12 sm:py-16 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-20">
+      <div class="relative z-10 lg:col-start-1 lg:row-start-1">
         <p class="eyebrow text-heat-dark">{content.hero.eyebrow}</p>
-        <h1 class="mt-5 max-w-4xl text-[clamp(3rem,7.2vw,6.5rem)] font-extrabold leading-[.94] tracking-[-0.065em] text-dark">{content.hero.title}</h1>
-        <p class="mt-7 max-w-2xl text-lg leading-8 text-muted sm:text-xl">{content.hero.lead}</p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <h1 class="mt-4 max-w-4xl text-[clamp(2.75rem,15vw,6.5rem)] font-extrabold leading-[.92] tracking-[-0.075em] text-dark sm:mt-5 sm:text-[clamp(3rem,7.2vw,6.5rem)] sm:leading-[.94] sm:tracking-[-0.065em]">{content.hero.title}</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-7 text-muted sm:mt-7 sm:text-xl sm:leading-8">{content.hero.lead}</p>
+      </div>
+      <div class="relative lg:col-start-2 lg:row-span-2 lg:row-start-1">
+        <div class="absolute -inset-10 rounded-full bg-orange-100/60 blur-3xl sm:-inset-16" aria-hidden="true"></div>
+        <div class="relative"><MediaSlot media={content.hero.media} priority /></div>
+      </div>
+      <div class="relative z-10 lg:col-start-1 lg:row-start-2">
+        <div class="mt-2 flex flex-col gap-3 sm:flex-row">
           <a href="#benefits" class="button-primary">{content.hero.primaryCta}<ArrowRight size={18} aria-hidden="true" /></a>
           <a href="#setup" class="button-secondary">{content.hero.secondaryCta}</a>
         </div>
-        <ul class="mt-10 flex flex-col gap-3 border-t border-line pt-6 text-sm font-semibold text-muted sm:flex-row sm:flex-wrap sm:gap-x-7">
-          {content.hero.highlights.map((item) => <li class="flex items-center gap-2"><Check class="text-heat-dark" size={17} aria-hidden="true" />{item}</li>)}
-        </ul>
-      </div>
-      <div class="relative">
-        <div class="absolute -inset-16 rounded-full bg-orange-100/60 blur-3xl" aria-hidden="true"></div>
-        <div class="relative"><MediaSlot media={content.hero.media} priority /></div>
+        <div class="mt-8 rounded-[24px] border border-line bg-page/70 p-5 sm:mt-10 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
+          <ul class="grid gap-3 text-sm font-semibold text-muted sm:flex sm:flex-wrap sm:gap-x-7 sm:border-t sm:border-line sm:pt-6">
+            {content.hero.highlights.map((item) => <li class="flex items-center gap-2"><Check class="shrink-0 text-heat-dark" size={17} aria-hidden="true" />{item}</li>)}
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -45,28 +49,14 @@ const warranty = `${productFacts.warrantyMonths} ${lang === 'uk' ? 'місяці
   <section id="benefits" class="section-space bg-page">
     <div class="site-container">
       <SectionHeading {...content.benefits} align="center" />
-      <div class="mt-14 sm:mt-16"><BenefitList items={content.benefits.items} /></div>
-    </div>
-  </section>
-
-  <section class="bg-page pb-16 sm:pb-20 lg:pb-24">
-    <div class="site-container">
-      <div class="overflow-hidden rounded-[32px] bg-dark px-6 py-10 text-white sm:px-10 sm:py-14 lg:grid lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-14 lg:p-14">
-        <div>
-          <SectionHeading {...content.differentiator} inverse />
-          <ul class="mt-8 space-y-4 text-base leading-7 text-white/70">
-            {content.differentiator.points.map((item) => <li class="flex gap-3"><Check class="mt-1 shrink-0 text-orange-300" size={18} aria-hidden="true" /><span>{item}</span></li>)}
-          </ul>
-        </div>
-        <div class="mt-10 lg:mt-0"><MediaSlot media={content.differentiator.media} /></div>
-      </div>
+      <div class="mt-12 sm:mt-16"><BenefitList items={content.benefits.items} /></div>
     </div>
   </section>
 
   <section id="capabilities" class="section-space overflow-hidden bg-stone">
     <div class="site-container">
       <SectionHeading {...content.capabilities} />
-      <div class="-mr-4 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 pr-4 sm:-mr-6 sm:pr-6 lg:mr-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pr-0">
+      <div class="mt-10 grid gap-4 sm:mt-12 md:-mx-6 md:flex md:snap-x md:snap-mandatory md:gap-5 md:overflow-x-auto md:px-6 md:pb-3 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0">
         {content.capabilities.items.map((item) => <CapabilityCard item={item} />)}
       </div>
     </div>
@@ -76,7 +66,7 @@ const warranty = `${productFacts.warrantyMonths} ${lang === 'uk' ? 'місяці
     <div class="site-container grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-16">
       <div>
         <SectionHeading {...content.setup} />
-        <div class="mt-12"><SetupSteps steps={content.setup.steps} /></div>
+        <div class="mt-10 sm:mt-12"><SetupSteps steps={content.setup.steps} /></div>
       </div>
       <MediaSlot media={content.setup.media} />
     </div>
@@ -122,9 +112,9 @@ const warranty = `${productFacts.warrantyMonths} ${lang === 'uk' ? 'місяці
   <section id="trust" class="section-space bg-dark text-white">
     <div class="site-container">
       <SectionHeading {...content.trust} inverse />
-      <div class="mt-12 grid gap-6 lg:grid-cols-2">
-        <MediaSlot media={content.trust.localMedia} />
-        <TrustPanel localTitle={content.trust.localTitle} onlineTitle={content.trust.onlineTitle} local={content.trust.local} online={content.trust.online} />
+      <div class="mt-10 grid gap-6 lg:mt-12 lg:grid-cols-2">
+        <div class="order-2 lg:order-1"><MediaSlot media={content.trust.localMedia} /></div>
+        <div class="order-1 lg:order-2"><TrustPanel localTitle={content.trust.localTitle} onlineTitle={content.trust.onlineTitle} local={content.trust.local} online={content.trust.online} /></div>
       </div>
     </div>
   </section>
@@ -138,11 +128,11 @@ const warranty = `${productFacts.warrantyMonths} ${lang === 'uk' ? 'місяці
 
   <section class="bg-white pb-16 sm:pb-20 lg:pb-24">
     <div class="site-container">
-      <div class="rounded-[32px] bg-heat px-6 py-10 text-dark sm:px-10 sm:py-14 lg:flex lg:items-end lg:justify-between lg:gap-12 lg:p-14">
-        <div class="max-w-3xl"><h2 class="section-title">{content.finalCta.title}</h2><p class="mt-5 text-lg leading-8 text-dark">{content.finalCta.text}</p></div>
+      <div class="rounded-[28px] bg-heat px-5 py-8 text-dark sm:rounded-[32px] sm:px-10 sm:py-14 lg:flex lg:items-end lg:justify-between lg:gap-12 lg:p-14">
+        <div class="max-w-3xl"><h2 class="section-title">{content.finalCta.title}</h2><p class="mt-4 text-base leading-7 text-dark sm:mt-5 sm:text-lg sm:leading-8">{content.finalCta.text}</p></div>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row lg:mt-0">
           <a href={routePath(lang, 'docs')} class="button-secondary border-dark bg-white/30">{content.finalCta.docs}</a>
-          <a href={routePath(lang, 'contact')} class="button-primary bg-dark text-white hover:bg-black">{content.finalCta.contact}<ExternalLink size={17} aria-hidden="true" /></a>
+          <a href={routePath(lang, 'support')} class="button-primary bg-dark text-white hover:bg-black">{content.finalCta.support}<ExternalLink size={17} aria-hidden="true" /></a>
         </div>
       </div>
     </div>

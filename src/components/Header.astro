@@ -15,7 +15,7 @@ const { lang, page, content } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 border-b border-line/80 bg-white/95 backdrop-blur-md" data-site-header>
-  <div class="site-container flex h-[72px] items-center justify-between gap-5">
+  <div class="site-container flex h-16 items-center justify-between gap-4 sm:h-[72px] sm:gap-5">
     <a href={routePath(lang, 'home')} class="rounded-full" aria-label="OSH home">
       <BrandMark />
     </a>
@@ -38,7 +38,7 @@ const { lang, page, content } = Astro.props;
       <LanguageSwitcher lang={lang} page={page} label={content.languageLabel} />
       <button
         type="button"
-        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-dark transition-colors hover:border-dark/30 hover:bg-stone lg:hidden"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-dark transition-colors hover:border-dark/30 hover:bg-stone sm:h-11 sm:w-11 lg:hidden"
         aria-label={content.menuOpenLabel}
         aria-expanded="false"
         aria-controls="mobile-navigation"

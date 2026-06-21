@@ -6,7 +6,6 @@ keys used to replace media without changing page components or localized copy.
 | ID | Site use | Required final asset |
 |---|---|---|
 | PH-01 | Hero | Clean OSH Floor product-on-wall scene. Current draft is registered as a real image and should still be reviewed before release. |
-| PH-02 | Why OSH | Hallway/bathroom scene showing wall unit and reference sensor in different rooms. |
 | PH-03 | AMOLED | Device close-up with current temperature, target and reference-sensor state. |
 | PH-04 | App | Phone mockup with the production dashboard. |
 | PH-05 | History | Production temperature/history graph. |

@@ -3,15 +3,19 @@ import { Check, Cloud } from 'lucide-astro';
 interface Props { localTitle: string; onlineTitle: string; local: string[]; online: string[]; }
 const { localTitle, onlineTitle, local, online } = Astro.props;
 ---
-<div class="grid overflow-hidden rounded-[28px] border border-white/10 md:grid-cols-2">
-  <section class="bg-white p-6 sm:p-8">
+<div class="grid overflow-hidden rounded-[24px] border border-white/10 sm:rounded-[28px] md:grid-cols-2">
+  <section class="bg-white p-5 sm:p-8">
     <Check class="text-heat" size={24} aria-hidden="true" />
-    <h3 class="mt-5 text-2xl font-bold text-dark">{localTitle}</h3>
-    <ul class="mt-6 space-y-3 text-muted">{local.map((item) => <li>{item}</li>)}</ul>
+    <h3 class="mt-4 text-xl font-bold text-dark sm:mt-5 sm:text-2xl">{localTitle}</h3>
+    <ul class="mt-5 space-y-3 text-sm leading-6 text-muted sm:mt-6 sm:text-base">
+      {local.map((item) => <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-heat"></span><span>{item}</span></li>)}
+    </ul>
   </section>
-  <section class="bg-white/5 p-6 text-white sm:p-8">
+  <section class="bg-white/5 p-5 text-white sm:p-8">
     <Cloud class="text-orange-300" size={24} aria-hidden="true" />
-    <h3 class="mt-5 text-2xl font-bold">{onlineTitle}</h3>
-    <ul class="mt-6 space-y-3 text-white/65">{online.map((item) => <li>{item}</li>)}</ul>
+    <h3 class="mt-4 text-xl font-bold sm:mt-5 sm:text-2xl">{onlineTitle}</h3>
+    <ul class="mt-5 space-y-3 text-sm leading-6 text-white/65 sm:mt-6 sm:text-base">
+      {online.map((item) => <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-orange-300"></span><span>{item}</span></li>)}
+    </ul>
   </section>
 </div>

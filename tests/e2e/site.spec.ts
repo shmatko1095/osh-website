@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const routes = ['/', '/compatibility/', '/docs/', '/support/', '/contact/', '/en/', '/en/compatibility/', '/en/docs/', '/en/support/', '/en/contact/'];
+const routes = ['/', '/compatibility/', '/docs/', '/support/', '/en/', '/en/compatibility/', '/en/docs/', '/en/support/'];
 const responsiveViewports = [
   { width: 375, height: 812 },
   { width: 768, height: 1024 },
@@ -77,7 +77,7 @@ test('home anchors and FAQ work without client-side framework code', async ({ pa
 });
 
 test('contact channels use the configured destinations', async ({ page }) => {
-  await page.goto('/contact/');
+  await page.goto('/support/');
   await expect(page.locator('a[href="mailto:shmatko1095@gmail.com"]').first()).toBeVisible();
   await expect(page.locator('a[href="https://t.me/shmatko1095"]').first()).toBeVisible();
 });

@@ -3,7 +3,6 @@ import ph01Hero from '@/assets/site/ph-01-hero-v1.png';
 
 export const siteAssets: Record<MediaSlotId, MediaSource> = {
   'PH-01': { kind: 'image', src: ph01Hero },
-  'PH-02': { kind: 'placeholder', tone: 'warm' },
   'PH-03': { kind: 'placeholder', tone: 'dark' },
   'PH-04': { kind: 'placeholder', tone: 'dark' },
   'PH-05': { kind: 'placeholder', tone: 'light' },

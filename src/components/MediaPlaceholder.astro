@@ -14,11 +14,11 @@ const aspectClass = { video: 'aspect-video', square: 'aspect-square', portrait: 
 const toneClass = tone === 'dark' ? 'bg-dark text-white' : tone === 'warm' ? 'bg-orange-50 text-dark' : 'bg-stone text-dark';
 ---
 
-<figure class={`relative flex ${aspectClass} overflow-hidden rounded-[28px] ${toneClass}`} data-placeholder-media>
+<figure class={`relative flex ${aspectClass} overflow-hidden rounded-[24px] sm:rounded-[28px] ${toneClass}`} data-placeholder-media>
   <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle at 20% 20%, rgba(249,115,22,.32), transparent 35%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.28), transparent 42%);" aria-hidden="true"></div>
-  <figcaption class="relative z-10 flex w-full flex-col justify-end p-6 sm:p-8">
-    <ImageIcon class="mb-auto opacity-60" size={28} stroke-width={1.7} aria-hidden="true" />
-    <p class="text-xl font-bold">{title}</p>
+  <figcaption class="relative z-10 flex w-full flex-col justify-end p-5 sm:p-8">
+    <ImageIcon class="mb-auto opacity-60" size={24} stroke-width={1.7} aria-hidden="true" />
+    <p class="text-lg font-bold sm:text-xl">{title}</p>
     <p class={`mt-2 max-w-md text-sm leading-6 ${tone === 'dark' ? 'text-white/65' : 'text-muted'}`}>{description}</p>
   </figcaption>
 </figure>
