@@ -4,6 +4,7 @@ import { productFacts, routePath, site } from '@/content';
 import type { Lang } from '@/content';
 import BenefitList from './BenefitList.astro';
 import CapabilityCard from './CapabilityCard.astro';
+import CompatibilitySection from './CompatibilitySection.astro';
 import FAQ from './FAQ.astro';
 import MediaSlot from './MediaSlot.astro';
 import SectionHeading from './SectionHeading.astro';
@@ -52,6 +53,8 @@ const warranty = `${productFacts.warrantyMonths} ${lang === 'uk' ? 'місяці
       <div class="mt-12 sm:mt-16"><BenefitList items={content.benefits.items} /></div>
     </div>
   </section>
+
+  <CompatibilitySection content={content.compatibility} />
 
   <section id="capabilities" class="section-space overflow-hidden bg-stone">
     <div class="site-container">

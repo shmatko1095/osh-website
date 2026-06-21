@@ -1,5 +1,6 @@
 import type { MediaSlotId, MediaSource } from './types';
 import ph01Hero from '@/assets/site/ph-01-hero-v1.png';
+import ph12ZigbeeSensor from '@/assets/site/zigbee-sensor-tuya-e01-egs0102.jpg';
 
 export const siteAssets: Record<MediaSlotId, MediaSource> = {
   'PH-01': { kind: 'image', src: ph01Hero },
@@ -10,5 +11,6 @@ export const siteAssets: Record<MediaSlotId, MediaSource> = {
   'PH-07': { kind: 'placeholder', tone: 'dark' },
   'PH-08': { kind: 'placeholder', tone: 'warm' },
   'PH-09': { kind: 'placeholder', tone: 'dark' },
-  'PH-11': { kind: 'placeholder', tone: 'light' }
+  'PH-11': { kind: 'placeholder', tone: 'light' },
+  'PH-12': { kind: 'image', src: ph12ZigbeeSensor }
 };

@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const routes = ['/', '/compatibility/', '/docs/', '/support/', '/en/', '/en/compatibility/', '/en/docs/', '/en/support/'];
+const routes = ['/', '/docs/', '/support/', '/en/', '/en/docs/', '/en/support/'];
 const responsiveViewports = [
   { width: 375, height: 812 },
   { width: 768, height: 1024 },
@@ -38,9 +38,9 @@ for (const route of ['/', '/en/']) {
 }
 
 test('language switcher keeps the current page', async ({ page }) => {
-  await page.goto('/compatibility/');
+  await page.goto('/docs/');
   await page.getByLabel(/Мова сайту/).click();
-  await expect(page).toHaveURL(/\/en\/compatibility\/$/);
+  await expect(page).toHaveURL(/\/en\/docs\/$/);
 });
 
 test('mobile navigation is keyboard accessible', async ({ page }) => {
@@ -51,7 +51,7 @@ test('mobile navigation is keyboard accessible', async ({ page }) => {
   await menu.click();
   await expect(menu).toHaveAttribute('aria-expanded', 'true');
   await expect(menu).toHaveAccessibleName('Закрити меню');
-  await expect(page.locator('#mobile-navigation').getByRole('link', { name: 'Сумісність' })).toBeVisible();
+  await expect(page.locator('#mobile-navigation').getByRole('link', { name: 'Документація' })).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(menu).toHaveAttribute('aria-expanded', 'false');
   await expect(menu).toBeFocused();
@@ -62,9 +62,7 @@ test('product facts are rendered from shared data', async ({ page }) => {
   await expect(page.getByText('5 499 грн')).toBeVisible();
   await expect(page.getByText('16 A')).toBeVisible();
   await expect(page.getByText('24 місяці')).toBeVisible();
-  await page.goto('/en/compatibility/');
-  await expect(page.getByText('Tuya ZTH-02')).toBeVisible();
-  await expect(page.getByText('Aqara Temperature and Humidity Sensor T1')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Протестовано з популярними Zigbee-датчиками температури, зокрема Tuya.' })).toBeVisible();
 });
 
 test('home anchors and FAQ work without client-side framework code', async ({ page }) => {

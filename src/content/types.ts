@@ -1,7 +1,7 @@
 export const LANGS = ['uk', 'en'] as const;
 export type Lang = (typeof LANGS)[number];
 
-export const PAGE_KEYS = ['home', 'compatibility', 'docs', 'support'] as const;
+export const PAGE_KEYS = ['home', 'docs', 'support'] as const;
 export type PageKey = (typeof PAGE_KEYS)[number];
 
 export const MEDIA_SLOT_IDS = [
@@ -13,7 +13,8 @@ export const MEDIA_SLOT_IDS = [
   'PH-07',
   'PH-08',
   'PH-09',
-  'PH-11'
+  'PH-11',
+  'PH-12'
 ] as const;
 
 export type MediaSlotId = (typeof MEDIA_SLOT_IDS)[number];
@@ -120,6 +121,7 @@ export interface CapabilityItem {
 export interface HomeContent {
   hero: HeroContent;
   benefits: HeadingContent & { items: FeatureItem[] };
+  compatibility: CompatibilityContent;
   capabilities: HeadingContent & { items: CapabilityItem[] };
   setup: HeadingContent & { steps: Array<{ title: string; text: string }> ; media: MediaCopy };
   kit: HeadingContent & {
@@ -143,17 +145,11 @@ export interface HomeContent {
   finalCta: { title: string; text: string; docs: string; support: string };
 }
 
-export interface CompatibilityContent extends HeadingContent {
-  frameTitle: string;
-  frameText: string;
-  sensorTitle: string;
-  sensorText: string;
-  modelLabel: string;
-  statusLabel: string;
-  statuses: Record<SensorCompatibilityFact['status'], string>;
-  policyTitle: string;
-  policyItems: string[];
-  supportCta: string;
+export interface CompatibilityContent {
+  eyebrow: string;
+  testedTitle: string;
+  testedText: string;
+  media: MediaCopy;
 }
 
 export interface DocsContent extends HeadingContent {
@@ -197,7 +193,6 @@ export interface SiteContent {
   menuCloseLabel: string;
   nav: NavItem[];
   home: HomeContent;
-  compatibility: CompatibilityContent;
   docs: DocsContent;
   support: SupportContent;
   footer: FooterContent;

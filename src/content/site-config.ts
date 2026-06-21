@@ -15,7 +15,6 @@ export const locales = {
 
 const pageSegments: Record<PageKey, string> = {
   home: '',
-  compatibility: 'compatibility',
   docs: 'docs',
   support: 'support'
 };

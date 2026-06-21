@@ -1,0 +1,17 @@
+---
+import type { CompatibilityContent } from '@/content';
+import MediaSlot from './MediaSlot.astro';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props { content: CompatibilityContent; }
+const { content } = Astro.props;
+---
+
+<section id="compatibility" class="section-space bg-white">
+  <div class="site-container grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-16">
+    <SectionHeading eyebrow={content.eyebrow} title={content.testedTitle} lead={content.testedText} />
+    <div>
+      <MediaSlot media={content.media} />
+    </div>
+  </div>
+</section>

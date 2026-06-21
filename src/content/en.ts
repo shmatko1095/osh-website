@@ -3,7 +3,6 @@ import type { FeatureItem, SiteContent } from './types';
 export const en = {
   seo: {
     home: { title: 'OSH Floor — smart thermostat for the room that matters', description: 'Control electric floor heating by the temperature in the room you choose, without a separate Zigbee gateway or custom automations.' },
-    compatibility: { title: 'OSH Floor compatibility — sensors and 55 × 55 frames', description: 'Check OSH Floor compatibility with wireless temperature sensors, frames, and installation conditions.' },
     docs: { title: 'OSH Floor documentation', description: 'How the reference sensor, modes, local controls, and network features work in OSH Floor.' },
     support: { title: 'OSH Floor support', description: 'Warranty, local behaviour, cloud features, and OSH Floor support channels.' }
   },
@@ -13,7 +12,6 @@ export const en = {
   menuCloseLabel: 'Close menu',
   nav: [
     { page: 'home', label: 'OSH Floor' },
-    { page: 'compatibility', label: 'Compatibility' },
     { page: 'docs', label: 'Docs' },
     { page: 'support', label: 'Support' }
   ],
@@ -39,6 +37,19 @@ export const en = {
         { icon: 'smartphone', title: 'Wall screen and app', text: 'Control heating on the wall or remotely in the mobile app.' },
         { icon: 'gauge', title: 'History and energy', text: 'Review temperature, heating activity, and energy use.' }
       ]
+    },
+    compatibility: {
+      eyebrow: 'Compatibility',
+      testedTitle: 'Tested with popular Zigbee temperature sensors, including Tuya.',
+      testedText: 'OSH Floor pairs with them without a separate Zigbee hub, receives temperature, humidity, and battery-level data, and lets you use the sensor to control heating.',
+      media: {
+        id: 'PH-12',
+        title: 'Tuya Zigbee temperature sensor',
+        description: 'One of the sensors tested with OSH Floor.',
+        alt: 'White Tuya wireless Zigbee temperature sensor.',
+        aspect: 'square',
+        fit: 'contain'
+      }
     },
     capabilities: {
       eyebrow: 'Control',
@@ -99,27 +110,12 @@ export const en = {
       items: [
         { question: 'Do I need a separate Zigbee gateway?', answer: 'No. A supported sensor pairs directly with OSH Floor.' },
         { question: 'Does the thermostat work without internet?', answer: 'Yes. Regulation, sensors, modes, schedules, NTC, and wall controls work locally.' },
-        { question: 'Can I connect any Zigbee sensor?', answer: 'No. Compatibility depends on the exact model and version. Current statuses are listed on the [compatibility page](/en/compatibility/).' },
+        { question: 'Can I connect any Zigbee sensor?', answer: 'Compatibility depends on the exact model and version. We test popular Zigbee temperature sensors, including Tuya devices.' },
         { question: 'Can one thermostat control several rooms?', answer: 'One OSH Floor controls one connected heating circuit. It can see several sensors, but one is selected as the reference.' },
         { question: 'Why is a floor NTC still needed?', answer: 'The floor NTC can work as the heating reference or as a floor-temperature limit. It helps keep the surface comfortable to walk on and prevents the floor covering from overheating.' }
       ]
     },
     finalCta: { title: 'Learn more about OSH Floor.', text: 'Explore how it works, check compatibility, or open support channels for your installation.', docs: 'View documentation', support: 'Support' }
-  },
-  compatibility: {
-    eyebrow: 'Compatibility',
-    title: 'Verified compatibility instead of broad promises.',
-    lead: 'A Zigbee logo or 55 × 55 format does not guarantee identical behaviour for every model.',
-    frameTitle: 'Frames and installation',
-    frameText: 'OSH Floor uses the 55 × 55 mm format. Compatibility with a frame series depends on mechanics, depth, and the mounting adapter.',
-    sensorTitle: 'Wireless sensors',
-    sensorText: 'The statuses below are working values and may change after additional testing.',
-    modelLabel: 'Model',
-    statusLabel: 'Status',
-    statuses: { supported: 'Supported', testing: 'Testing' },
-    policyTitle: 'What is tested',
-    policyItems: ['temperature and humidity', 'reporting interval', 'battery level', 'recovery after signal loss', 'behaviour after restart'],
-    supportCta: 'Ask about compatibility'
   },
   docs: {
     eyebrow: 'Documentation',
@@ -155,7 +151,7 @@ export const en = {
     telegramLabel: 'Open Telegram',
     faqTitle: 'Common questions',
     faq: [
-      { question: 'What if a sensor does not pair?', answer: 'Check the model on the compatibility page and contact support with the model name and device version.' },
+      { question: 'What if a sensor does not pair?', answer: 'Contact support and send the exact model, a product link, and the device version when available.' },
       { question: 'Will heating stop without Wi-Fi?', answer: 'No. Local thermostat functions continue to work without Wi-Fi or cloud access.' },
       { question: 'Who should install OSH Floor?', answer: 'A qualified professional should perform the 230 V connection according to local requirements.' }
     ]
