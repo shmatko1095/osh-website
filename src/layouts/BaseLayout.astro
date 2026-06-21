@@ -39,6 +39,16 @@ const structuredData = {
 <!doctype html>
 <html lang={lang === 'uk' ? 'uk' : 'en'}>
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-0Q0CG4Z67L"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-0Q0CG4Z67L');
+    </script>
     <!-- Google Tag Manager -->
     <script is:inline>
       (function (w, d, s, l, i) {
