@@ -19,7 +19,7 @@ export const en = {
     hero: {
       eyebrow: 'OSH Floor',
       title: 'The right temperature where it truly matters.',
-      lead: 'Control floor heating with a wireless sensor in the room you care about. No separate Zigbee gateway and no custom automations.',
+      lead: 'Control floor heating by the temperature in the room you care about, even if the thermostat is installed elsewhere. No separate Zigbee gateway and no custom automations.',
       primaryCta: 'Learn more',
       secondaryCta: 'How it works',
       highlights: ['Wireless reference sensor', 'Core functions work locally', 'Floor protection with NTC'],
@@ -30,7 +30,7 @@ export const en = {
       title: 'More flexible than a thermostat. Simpler than a smart home.',
       lead: 'OSH Floor combines measurement, control, and floor protection in one purpose-built device.',
       items: [
-        { icon: 'thermometer', title: 'Temperature in the right room', text: 'Place a wireless sensor where comfort is expected.' },
+        { icon: 'thermometer', title: 'Temperature in the right room', text: 'Place a wireless sensor where a comfortable temperature matters.' },
         { icon: 'radio', title: 'No separate gateway', text: 'A supported Zigbee sensor pairs directly with OSH Floor.' },
         { icon: 'activity', title: 'Local schedules', text: 'Modes and schedules are stored on the thermostat.' },
         { icon: 'shield', title: 'Floor temperature limit', text: 'A wired NTC keeps floor heating within a safe limit.' },
@@ -41,7 +41,7 @@ export const en = {
     compatibility: {
       eyebrow: 'Compatibility',
       testedTitle: 'Tested with popular Zigbee temperature sensors, including Tuya.',
-      testedText: 'OSH Floor pairs with them without a separate Zigbee hub, receives temperature, humidity, and battery-level data, and lets you use the sensor to control heating.',
+      testedText: 'OSH Floor pairs with compatible Zigbee sensors without a separate hub, gets the available sensor readings, and lets you use the sensor\'s temperature to control heating.',
       media: {
         id: 'PH-12',
         title: 'Tuya Zigbee temperature sensor',
@@ -54,7 +54,7 @@ export const en = {
     capabilities: {
       eyebrow: 'Control',
       title: 'Everything important is available on the wall and in the app.',
-      lead: 'Each interface has a clear job: quick changes on the wall, remote control, and understandable history.',
+      lead: 'Each interface has a clear job: quick changes on the wall, remote control, and temperature and energy history.',
       items: [
         { title: 'AMOLED controls', text: 'Temperature, mode, schedule, and reference-sensor status directly on the thermostat.', media: { id: 'PH-04', title: 'OSH Floor display', description: 'Current temperature, target, and heating state.', alt: 'OSH Floor thermostat interface.', aspect: 'portrait', fit: 'contain' } },
         { title: 'Mobile app', text: 'Change mode and temperature remotely and check device state.', media: { id: 'PH-05', title: 'App dashboard', description: 'Temperature, mode, and heating activity.', alt: 'OSH mobile app dashboard.', aspect: 'portrait', fit: 'contain' } },
@@ -111,8 +111,7 @@ export const en = {
         { question: 'Do I need a separate Zigbee gateway?', answer: 'No. A supported sensor pairs directly with OSH Floor.' },
         { question: 'Does the thermostat work without internet?', answer: 'Yes. Regulation, sensors, modes, schedules, NTC, and wall controls work locally.' },
         { question: 'Can I connect any Zigbee sensor?', answer: 'Compatibility depends on the exact model and version. We test popular Zigbee temperature sensors, including Tuya devices.' },
-        { question: 'Can one thermostat control several rooms?', answer: 'One OSH Floor controls one connected heating circuit. It can see several sensors, but one is selected as the reference.' },
-        { question: 'Why is a floor NTC still needed?', answer: 'The floor NTC can work as the heating reference or as a floor-temperature limit. It helps keep the surface comfortable to walk on and prevents the floor covering from overheating.' }
+        { question: 'Can one thermostat control several rooms?', answer: 'One OSH Floor controls one connected heating circuit. It can see several sensors, but one is selected as the reference.' }
       ]
     },
     finalCta: { title: 'Learn more about OSH Floor.', text: 'Explore how it works, check compatibility, or open support channels for your installation.', docs: 'View documentation', support: 'Support' }
